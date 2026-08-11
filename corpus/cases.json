@@ -1,0 +1,157 @@
+{
+  "version": "readabilities-suite.corpus.v2",
+  "cases": [
+    {
+      "id": "READ-001", "name": "noisy-rich-article", "kind": "offline",
+      "fixture": "READ-001-noisy-article.html", "base_url": "https://example.test/local-first-reading",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-CENTRAL-IDEA", "REQUIRED-EVIDENCE", "REQUIRED-STRUCTURE", "REQUIRED-FOOTNOTE"],
+      "forbidden_text": ["FORBIDDEN-RELATED", "FORBIDDEN-NEWSLETTER", "FORBIDDEN-FOOTER"],
+      "required_structure": ["heading", "code", "table", "image", "footnote"],
+      "required_markdown": ["```rust", "](https://example.test/details)", "](https://example.test/images/pipeline.png) The relative", "<sup>1</sup>"],
+      "forbidden_markdown": ["pipeline.png)The relative"],
+      "metadata_required": ["title", "author"],
+      "tags": ["smoke", "article", "structure", "security"]
+    },
+    {
+      "id": "READ-002", "name": "short-note", "kind": "offline",
+      "fixture": "READ-002-short-note.html", "base_url": "https://example.test/short",
+      "expected_statuses": ["success"], "required_text": ["REQUIRED-SHORT"],
+      "forbidden_text": ["FORBIDDEN-SHORT-NAV", "FORBIDDEN-SHORT-FOOTER"],
+      "required_structure": ["heading"], "metadata_required": ["title"],
+      "tags": ["short", "fallback"]
+    },
+    {
+      "id": "READ-003", "name": "chinese-article", "kind": "offline",
+      "fixture": "READ-003-chinese-article.html", "base_url": "https://example.test/zh",
+      "expected_statuses": ["success"],
+      "required_text": ["必须保留：正文提取的第一步", "必须保留：保守的去噪策略", "必须保留：最终安全清理"],
+      "forbidden_text": ["禁止保留：全站导航", "禁止保留：相关推荐", "禁止保留：版权信息"],
+      "required_structure": ["heading"], "metadata_required": ["title", "author"],
+      "tags": ["cjk", "article"]
+    },
+    {
+      "id": "READ-004", "name": "technical-documentation", "kind": "offline",
+      "fixture": "READ-004-technical-doc.html", "base_url": "https://example.test/docs/parser",
+      "expected_statuses": ["success"], "required_text": ["REQUIRED-DOC", "REQUIRED-DOC-END"],
+      "forbidden_text": ["FORBIDDEN-DOC-NAV", "FORBIDDEN-DOC-FOOTER"],
+      "required_structure": ["heading", "code", "table"], "metadata_required": ["title"],
+      "required_markdown": ["```json"],
+      "tags": ["docs", "code", "table"]
+    },
+    {
+      "id": "READ-005", "name": "news-article", "kind": "offline",
+      "fixture": "READ-005-news.html", "base_url": "https://example.test/news/pier",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-NEWS-LEDE", "REQUIRED-NEWS-QUOTE", "REQUIRED-NEWS-CONTEXT"],
+      "forbidden_text": ["FORBIDDEN-BREAKING", "FORBIDDEN-TRENDING", "FORBIDDEN-NEWS-FOOTER"],
+      "required_structure": ["heading"], "metadata_required": ["title", "author"],
+      "tags": ["news", "article"]
+    },
+    {
+      "id": "READ-006", "name": "blog-list-quote", "kind": "offline",
+      "fixture": "READ-006-blog.html", "base_url": "https://example.test/blog/workshop",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-BLOG-ONE", "REQUIRED-BLOG-LIST", "REQUIRED-BLOG-QUOTE", "REQUIRED-BLOG-END"],
+      "forbidden_text": ["FORBIDDEN-BLOG-HEADER", "FORBIDDEN-BLOG-COMMENTS", "FORBIDDEN-BLOG-FOOTER"],
+      "required_structure": ["heading", "list", "blockquote"], "metadata_required": ["title"],
+      "required_markdown": ["> REQUIRED-BLOG-QUOTE"],
+      "tags": ["blog", "list", "quote"]
+    },
+    {
+      "id": "READ-007", "name": "forum-answer", "kind": "offline",
+      "fixture": "READ-007-forum.html", "base_url": "https://example.test/forum/table",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-QUESTION", "REQUIRED-ANSWER", "REQUIRED-REPLY"],
+      "forbidden_text": ["FORBIDDEN-FORUM-NAV", "FORBIDDEN-FORUM-RELATED"],
+      "required_structure": ["heading", "code"], "metadata_required": ["title"],
+      "tags": ["forum", "reply", "code"]
+    },
+    {
+      "id": "READ-008", "name": "math-footnote", "kind": "offline",
+      "fixture": "READ-008-math-footnotes.html", "base_url": "https://example.test/math/identity",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-MATH", "REQUIRED-MATH-CONTEXT", "REQUIRED-MATH-FOOTNOTE"],
+      "forbidden_text": ["FORBIDDEN-MATH-NAV", "FORBIDDEN-MATH-SHARE"],
+      "required_structure": ["heading", "math", "list"], "metadata_required": ["title"],
+      "required_markdown": ["$$\na^{2} + 2 a b + b^{2}\n$$"],
+      "tags": ["math", "footnote"]
+    },
+    {
+      "id": "READ-009", "name": "image-caption", "kind": "offline",
+      "fixture": "READ-009-images.html", "base_url": "https://example.test/images/notes",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-IMAGE", "REQUIRED-CAPTION", "REQUIRED-IMAGE-END"],
+      "forbidden_text": ["FORBIDDEN-IMAGE-AD", "FORBIDDEN-IMAGE-FOOTER"],
+      "required_structure": ["heading", "image"], "metadata_required": ["title"],
+      "required_markdown": ["![A marked field notebook](https://example.test/images/cover.jpg)"],
+      "tags": ["image", "caption"]
+    },
+    {
+      "id": "READ-010", "name": "active-content-security", "kind": "offline",
+      "fixture": "READ-010-security.html", "base_url": "https://example.test/security",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-SECURITY", "REQUIRED-SECURITY-STRUCTURE"],
+      "forbidden_text": ["FORBIDDEN-SECURITY-NAV", "FORBIDDEN-SECURITY-FOOTER"],
+      "required_structure": ["heading", "image"], "metadata_required": ["title"],
+      "tags": ["security", "xss"]
+    },
+    {
+      "id": "READ-011", "name": "empty-input-validation", "kind": "offline",
+      "fixture": "READ-011-empty.html", "expected_statuses": ["failure", "no_content"],
+      "tags": ["validation", "failure"]
+    },
+    {
+      "id": "READ-012", "name": "medium-site-config", "kind": "offline",
+      "fixture": "READ-012-medium.html", "base_url": "https://medium.com/example/quiet-extraction",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-MEDIUM-OPEN", "REQUIRED-MEDIUM-BODY", "REQUIRED-MEDIUM-END"],
+      "forbidden_text": ["FORBIDDEN-MEDIUM-PROMO", "FORBIDDEN-MEDIUM-RELATED", "FORBIDDEN-MEDIUM-CLAP"],
+      "required_structure": ["heading", "list"], "metadata_required": ["title", "author"],
+      "expected_rust_site_config": "medium",
+      "tags": ["site-config", "medium", "article"]
+    },
+    {
+      "id": "READ-013", "name": "wikipedia-site-config", "kind": "offline",
+      "fixture": "READ-013-wikipedia.html", "base_url": "https://en.wikipedia.org/wiki/Readable_content",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-WIKI-LEDE", "REQUIRED-WIKI-HISTORY", "REQUIRED-WIKI-END"],
+      "forbidden_text": ["FORBIDDEN-WIKI-EDIT", "FORBIDDEN-WIKI-NAVBOX", "FORBIDDEN-WIKI-CATEGORIES"],
+      "required_structure": ["heading", "list"], "metadata_required": ["title"],
+      "expected_rust_site_config": "wikipedia",
+      "tags": ["site-config", "wikipedia", "reference"]
+    },
+    {
+      "id": "READ-014", "name": "mdn-site-config", "kind": "offline",
+      "fixture": "READ-014-mdn.html", "base_url": "https://developer.mozilla.org/en-US/docs/Web/API/Readable_Content",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-MDN-SUMMARY", "REQUIRED-MDN-SYNTAX", "REQUIRED-MDN-END"],
+      "forbidden_text": ["FORBIDDEN-MDN-SIDEBAR", "FORBIDDEN-MDN-SURVEY", "FORBIDDEN-MDN-PREVNEXT"],
+      "required_structure": ["heading", "code"], "metadata_required": ["title"],
+      "required_markdown": ["```js"],
+      "expected_rust_site_config": "mdn",
+      "tags": ["site-config", "mdn", "docs", "code"]
+    },
+    {
+      "id": "READ-015", "name": "unconfigured-generic-fallback", "kind": "offline",
+      "fixture": "READ-015-generic.html", "base_url": "https://unconfigured.example.test/articles/generic",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-GENERIC-OPEN", "REQUIRED-GENERIC-BODY", "REQUIRED-GENERIC-END"],
+      "forbidden_text": ["FORBIDDEN-GENERIC-NAV", "FORBIDDEN-GENERIC-RELATED", "FORBIDDEN-GENERIC-FOOTER"],
+      "required_structure": ["heading", "blockquote"], "metadata_required": ["title"],
+      "expected_rust_site_config": "",
+      "tags": ["generic", "fallback", "article"]
+    },
+    {
+      "id": "READ-016", "name": "external-site-config", "kind": "offline",
+      "fixture": "READ-016-custom-site.html", "base_url": "https://articles.custom-example.test/guides/clean-output",
+      "expected_statuses": ["success"],
+      "required_text": ["REQUIRED-CUSTOM-OPEN", "REQUIRED-CUSTOM-BODY", "REQUIRED-CUSTOM-END"],
+      "forbidden_text": ["FORBIDDEN-CUSTOM-SPONSOR", "FORBIDDEN-CUSTOM-TOOLS"],
+      "required_structure": ["heading", "list"], "metadata_required": ["title"],
+      "expected_rust_site_config": "custom-example",
+      "rust_site_config_file": "READ-016-custom.json",
+      "tags": ["site-config", "external-config", "article"]
+    }
+  ]
+}

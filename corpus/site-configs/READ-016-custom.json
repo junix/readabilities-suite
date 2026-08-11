@@ -1,0 +1,7 @@
+{
+  "id": "custom-example",
+  "hosts": ["custom-example.test"],
+  "path_prefixes": ["/guides/"],
+  "content_selector": "#story-root",
+  "remove_selectors": [".sponsor-card", ".floating-tools"]
+}

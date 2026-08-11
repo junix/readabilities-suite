@@ -1,0 +1,1443 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-08-11T22:03:53Z",
+  "profile": "live",
+  "targets": [
+    {
+      "id": "defuddle",
+      "command": "/opt/homebrew/bin/node",
+      "prefix": [
+        "/Users/junix/defuddle/dist/cli.js"
+      ],
+      "available": true
+    },
+    {
+      "id": "readabilities-py",
+      "command": "/Users/junix/.local/bin/uv",
+      "prefix": [
+        "run",
+        "python",
+        "/Users/junix/projects/document-tools/readabilities-suite/drivers/readabilities_py.py"
+      ],
+      "work_dir": "/Users/junix/projects/document-tools/readabilities-py",
+      "available": true
+    },
+    {
+      "id": "readabilities-rs",
+      "command": "/Users/junix/projects/document-tools/readabilities-rs/target/debug/readabilities-rs",
+      "available": true
+    }
+  ],
+  "total": 24,
+  "passed": 22,
+  "failed": 2,
+  "metrics": [
+    {
+      "participant": "defuddle",
+      "pass": 6,
+      "fail": 2,
+      "required_found": 0,
+      "required_total": 0,
+      "forbidden_rejected": 0,
+      "forbidden_total": 0,
+      "structure_found": 0,
+      "structure_total": 0,
+      "markdown_found": 32,
+      "markdown_total": 32,
+      "order_found": 0,
+      "order_total": 0,
+      "metadata_found": 0,
+      "metadata_total": 0,
+      "security_violations": 2,
+      "elapsed_ms": 4996,
+      "markdown_bytes": 115853,
+      "markdown_words": 12431,
+      "noise_hits": 3,
+      "duplicate_lines": 3
+    },
+    {
+      "participant": "readabilities-py",
+      "pass": 8,
+      "fail": 0,
+      "required_found": 0,
+      "required_total": 0,
+      "forbidden_rejected": 0,
+      "forbidden_total": 0,
+      "structure_found": 0,
+      "structure_total": 0,
+      "markdown_found": 32,
+      "markdown_total": 32,
+      "order_found": 0,
+      "order_total": 0,
+      "metadata_found": 0,
+      "metadata_total": 0,
+      "security_violations": 0,
+      "elapsed_ms": 20384,
+      "markdown_bytes": 121880,
+      "markdown_words": 12983,
+      "noise_hits": 3,
+      "duplicate_lines": 3
+    },
+    {
+      "participant": "readabilities-rs",
+      "pass": 8,
+      "fail": 0,
+      "required_found": 0,
+      "required_total": 0,
+      "forbidden_rejected": 0,
+      "forbidden_total": 0,
+      "structure_found": 0,
+      "structure_total": 0,
+      "markdown_found": 32,
+      "markdown_total": 32,
+      "order_found": 0,
+      "order_total": 0,
+      "metadata_found": 0,
+      "metadata_total": 0,
+      "security_violations": 0,
+      "elapsed_ms": 4266,
+      "markdown_bytes": 136464,
+      "markdown_words": 12507,
+      "noise_hits": 3,
+      "duplicate_lines": 3
+    }
+  ],
+  "best_evidence": {
+    "eligible": false,
+    "rust_security_zero": true,
+    "rust_recall_at_least_best": true,
+    "rust_noise_at_least_best": true,
+    "rust_structure_at_least_best": true,
+    "rust_markdown_at_least_best": true,
+    "rust_order_at_least_best": true,
+    "rust_metadata_at_least_best": true,
+    "recall_leaders": [
+      "defuddle",
+      "readabilities-py",
+      "readabilities-rs"
+    ],
+    "noise_leaders": [
+      "defuddle",
+      "readabilities-py",
+      "readabilities-rs"
+    ],
+    "structure_leaders": [
+      "defuddle",
+      "readabilities-py",
+      "readabilities-rs"
+    ],
+    "metadata_leaders": [
+      "defuddle",
+      "readabilities-py",
+      "readabilities-rs"
+    ],
+    "markdown_leaders": [
+      "defuddle",
+      "readabilities-py",
+      "readabilities-rs"
+    ],
+    "order_leaders": [
+      "defuddle",
+      "readabilities-py",
+      "readabilities-rs"
+    ],
+    "note": "Live pages have no frozen fact oracle and cannot establish release eligibility."
+  },
+  "cases": [
+    {
+      "case_id": "LIVE-001",
+      "case_name": "https://example.com/",
+      "participant": "defuddle",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 3,
+        "words": 17,
+        "headings": 0,
+        "links": 1,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 382,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "defuddle",
+        "status": "success",
+        "content_bytes": 149,
+        "content_sha256": "a80242055d7489b4ce56b3193e7521cd92ef34fdc5b6aa666d7bef8cc29ccfd5",
+        "content_preview": "This domain is for use in documentation examples without needing permission. Avoid use in operations. [Learn more](https://iana.org/domains/example)",
+        "content_format": "markdown",
+        "metadata": {
+          "language": "en",
+          "title": "Example Domain"
+        },
+        "elapsed_ms": 382,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-001",
+      "case_name": "https://example.com/",
+      "participant": "readabilities-py",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 3,
+        "words": 17,
+        "headings": 0,
+        "links": 1,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 2283,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 149,
+        "content_sha256": "a80242055d7489b4ce56b3193e7521cd92ef34fdc5b6aa666d7bef8cc29ccfd5",
+        "content_preview": "This domain is for use in documentation examples without needing permission. Avoid use in operations. [Learn more](https://iana.org/domains/example)",
+        "content_format": "markdown",
+        "metadata": {
+          "title": "Example Domain"
+        },
+        "elapsed_ms": 2283,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-001",
+      "case_name": "https://example.com/",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 5,
+        "words": 20,
+        "headings": 1,
+        "links": 1,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 95,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-rs",
+        "status": "success",
+        "content_bytes": 167,
+        "content_sha256": "5945db6fd8137aa377638814ca9bb1ac0a663fd90a97f11f86c3f5c09cfb40e3",
+        "content_preview": "# Example Domain This domain is for use in documentation examples without needing permission. Avoid use in operations. [Learn more](https://iana.org/domains/example)",
+        "content_format": "markdown",
+        "metadata": {
+          "language": "en",
+          "title": "Example Domain"
+        },
+        "elapsed_ms": 95,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-002",
+      "case_name": "https://en.wikipedia.org/wiki/Readability",
+      "participant": "defuddle",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 539,
+        "words": 8188,
+        "headings": 22,
+        "links": 182,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 4,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 1053,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "defuddle",
+        "status": "success",
+        "content_bytes": 64130,
+        "content_sha256": "e0a7c1ac7c396f2b6d7fa5f61c05193fb4533370b7738bd24f457568e87d338a",
+        "content_preview": "**Readability** is the ease with which a [reader](https://en.wikipedia.org/wiki/Reading_\\(process\\) \"Reading (process)\") can [understand](https://en.wikipedia.org/wiki/Understand \"Understand\") a [written text](https://en.wikipedia.org/wiki/…",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "Contributors to Wikimedia projects",
+          "language": "en",
+          "published": "2003-11-02T19:34:16Z",
+          "site": "Wikimedia Foundation, Inc.",
+          "title": "Readability - Wikipedia"
+        },
+        "elapsed_ms": 1053,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-002",
+      "case_name": "https://en.wikipedia.org/wiki/Readability",
+      "participant": "readabilities-py",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 469,
+        "words": 8592,
+        "headings": 11,
+        "links": 330,
+        "images": 1,
+        "code_fences": 0,
+        "tables": 4,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 2753,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 73818,
+        "content_sha256": "ff5018cf2936cc0e48959fb094ad70e94d75f2f7dddb296dcb94853d6d410a85",
+        "content_preview": "\"Reading difficulty\" redirects here; not to be confused with [Reading disability](https://en.wikipedia.org/wiki/Reading_disability \"Reading disability\"). **Readability** is the ease with which a [reader](https://en.wikipedia.org/wiki/Readin…",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "Contributors to Wikimedia projects",
+          "title": "Readability"
+        },
+        "elapsed_ms": 2753,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-002",
+      "case_name": "https://en.wikipedia.org/wiki/Readability",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 644,
+        "words": 8362,
+        "headings": 24,
+        "links": 308,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 3,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 1398,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-rs",
+        "status": "success",
+        "content_bytes": 74189,
+        "content_sha256": "69505d48f4cc98409a34a1dc1d97edce7f3cb5d8ee367b952bd2e7ddba11bf5b",
+        "content_preview": "**Readability** is the ease with which a [reader](https://en.wikipedia.org/wiki/Reading_\\(process\\) \"Reading (process)\") can [understand](https://en.wikipedia.org/wiki/Understand \"Understand\") a [written text](https://en.wikipedia.org/wiki/…",
+        "content_format": "markdown",
+        "site_config": "wikipedia",
+        "metadata": {
+          "author": "Contributors to Wikimedia projects",
+          "canonical_url": "https://en.wikipedia.org/wiki/Readability",
+          "language": "en",
+          "modified": "2026-07-20T07:26:47Z",
+          "published": "2003-11-02T19:34:16Z",
+          "site": "Wikimedia Foundation, Inc.",
+          "title": "Readability"
+        },
+        "elapsed_ms": 1398,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-003",
+      "case_name": "https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AF%BB%E6%80%A7",
+      "participant": "defuddle",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 33,
+        "words": 174,
+        "headings": 2,
+        "links": 13,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 511,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "defuddle",
+        "status": "success",
+        "content_bytes": 5147,
+        "content_sha256": "9d883a51c9df5ca25176dabdcb04c137f6cfdc4685d32443d660ea6cea7aa2be",
+        "content_preview": "阅读、写作的 **可读性** （英語： readability ）不等於印刷领域的 [易认性](about:/wiki/%E5%AD%97%E4%BD%93%E6%8E%92%E5%8D%B0%E5%AD%A6#%E6%98%93%E8%AE%A4%E6%80%A7 \"字体排印学\") （ legibility ），特指某种写作风格的产物。多方面的研究显示，容易阅读的文本可以增进理解程度，强化阅读印象，提高阅读速度，并让人坚持阅读。文本可读性的检测，可以为特定的读者群体或学生年…",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "维基媒体项目贡献者",
+          "language": "zh",
+          "published": "2010-01-10T17:27:06Z",
+          "site": "Wikimedia Foundation, Inc.",
+          "title": "可读性 - 维基百科，自由的百科全书"
+        },
+        "elapsed_ms": 511,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-003",
+      "case_name": "https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AF%BB%E6%80%A7",
+      "participant": "readabilities-py",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 25,
+        "words": 146,
+        "headings": 0,
+        "links": 21,
+        "images": 1,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 2123,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 5699,
+        "content_sha256": "f1e40bb47ac2d13fed3b10359719c7b64b066ae8ca550886b9b322dd47626429",
+        "content_preview": "[![](//upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Disambig_gray.svg/40px-Disambig_gray.svg.png?utm_source=zh.wikipedia.org\u0026utm_campaign=parser\u0026utm_content=thumbnail)](/wiki/Wikipedia:%E6%B6%88%E6%AD%A7%E4%B9%89 \"Wikipedia:消歧义\")此條目介紹的…",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "维基媒体项目贡献者",
+          "title": "可读性"
+        },
+        "elapsed_ms": 2123,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-003",
+      "case_name": "https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AF%BB%E6%80%A7",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 33,
+        "words": 147,
+        "headings": 2,
+        "links": 19,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 312,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-rs",
+        "status": "success",
+        "content_bytes": 5832,
+        "content_sha256": "9cd7ee7c5aa615b58eb1498d1cb925b85b4bb22ed820135e7924690958e05178",
+        "content_preview": "阅读、写作的**可读性**（英語：readability）不等於印刷领域的[易认性](https://zh.wikipedia.org/wiki/%E5%AD%97%E4%BD%93%E6%8E%92%E5%8D%B0%E5%AD%A6#%E6%98%93%E8%AE%A4%E6%80%A7 \"字体排印学\")（legibility），特指某种写作风格的产物。多方面的研究显示，容易阅读的文本可以增进理解程度，强化阅读印象，提高阅读速度，并让人坚持阅读。文本可读性的检测，可以为特…",
+        "content_format": "markdown",
+        "site_config": "wikipedia",
+        "metadata": {
+          "author": "维基媒体项目贡献者",
+          "canonical_url": "https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AF%BB%E6%80%A7",
+          "language": "zh",
+          "modified": "2025-07-28T19:26:02Z",
+          "published": "2010-01-10T17:27:06Z",
+          "site": "Wikimedia Foundation, Inc.",
+          "title": "可读性"
+        },
+        "elapsed_ms": 312,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-004",
+      "case_name": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article",
+      "participant": "defuddle",
+      "status": "fail",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "security_violations": [
+        "iframe_element"
+      ],
+      "markdown_stats": {
+        "lines": 134,
+        "words": 491,
+        "headings": 8,
+        "links": 24,
+        "images": 0,
+        "code_fences": 3,
+        "tables": 2,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 539,
+      "proof": "case=LIVE-004 failed_facts=[] security=[iframe_element] actual_preview=\"Baseline Widely available This feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015. - [Learn more](/en-US/docs/Glossary/Baseline/Compatibility) - [See full comp\"",
+      "native": {
+        "participant": "defuddle",
+        "status": "success",
+        "content_bytes": 5492,
+        "content_sha256": "54cb1841d37d95045047e1bdf6c79bfa334519d88a77b3725badd7d46c428abd",
+        "content_preview": "Baseline Widely available This feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015. - [Learn more](/en-US/docs/Glossary/Baseline/Compatibility) - [See full comp…",
+        "content_format": "markdown",
+        "metadata": {
+          "language": "en-US",
+          "published": "2026-04-24T14:15:02.000Z",
+          "site": "MDN Web Docs",
+          "title": "\u003carticle\u003e HTML article contents element"
+        },
+        "elapsed_ms": 539,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-004",
+      "case_name": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article",
+      "participant": "readabilities-py",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 149,
+        "words": 537,
+        "headings": 9,
+        "links": 48,
+        "images": 0,
+        "code_fences": 3,
+        "tables": 2,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 2790,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 6605,
+        "content_sha256": "26f6acdbcfd0dd810b600077d7d34d414e85e81d31dff5d782de04358ba91dd9",
+        "content_preview": "Baseline Widely available This feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015. * [Learn more](/en-US/docs/Glossary/Baseline/Compatibility) * [See full comp…",
+        "content_format": "markdown",
+        "metadata": {
+          "title": "\u003carticle\u003e HTML article contents element - HTML | MDN"
+        },
+        "elapsed_ms": 2790,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-004",
+      "case_name": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 141,
+        "words": 489,
+        "headings": 8,
+        "links": 37,
+        "images": 0,
+        "code_fences": 3,
+        "tables": 2,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 484,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-rs",
+        "status": "success",
+        "content_bytes": 11782,
+        "content_sha256": "6acc9da6627ee9d1e0950f4a583fc4444f8a758e4a8747464bc38ae03060585b",
+        "content_preview": "# ` ` HTML article contents element Baseline Widely available This feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015. * [Learn more](https://developer.mozilla…",
+        "content_format": "markdown",
+        "site_config": "mdn",
+        "metadata": {
+          "canonical_url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article",
+          "description": "The \u003carticle\u003e HTML element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). Examples include: a forum post, a magazine or newspaper article, or a blog entry, a product card, a user-submitted comment, an interactive widget or gadget, or any other independent item of content.",
+          "language": "en-US",
+          "site": "MDN",
+          "title": "\u003carticle\u003e HTML article contents element - HTML"
+        },
+        "elapsed_ms": 484,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-005",
+      "case_name": "https://www.nasa.gov/news-release/nasa-to-cover-three-us-spacewalks-host-preview-news-conference/",
+      "participant": "defuddle",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 65,
+        "words": 681,
+        "headings": 0,
+        "links": 12,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 677,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "defuddle",
+        "status": "success",
+        "content_bytes": 5927,
+        "content_sha256": "43bcf4b5e41a6202aa147115e47efe6784180b772dc1a60b33f1c4f619052247",
+        "content_preview": "NASA astronaut Jessica Meir works inside the International Space Station’s Quest airlock in March, her reflection visible in a spacesuit helmet visor as she installs leg and arm components and swaps parts between suits. Credit: NASA/Jack Ha…",
+        "content_format": "markdown",
+        "metadata": {
+          "language": "en-US",
+          "site": "NASA",
+          "title": "NASA to Cover Three US Spacewalks, Host Preview News Conference"
+        },
+        "elapsed_ms": 677,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-005",
+      "case_name": "https://www.nasa.gov/news-release/nasa-to-cover-three-us-spacewalks-host-preview-news-conference/",
+      "participant": "readabilities-py",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 61,
+        "words": 643,
+        "headings": 0,
+        "links": 11,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 2736,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 5666,
+        "content_sha256": "405d47992b3121a17c7fb9519e85666870bab37d1c4078bad5d64f6e1415b4d1",
+        "content_preview": "***Editor’s Note: This advisory was updated on Aug. 10, 2026, to reflect the assigned crew members and coverage times for U.S. spacewalk 97, scheduled to take place on Tuesday, Aug. 18.*** ***Editor’s Note:*** ***The advisory was updated on…",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "Lauren E. Low",
+          "title": "NASA to Cover Three US Spacewalks, Host Preview News Conference - NASA"
+        },
+        "elapsed_ms": 2736,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-005",
+      "case_name": "https://www.nasa.gov/news-release/nasa-to-cover-three-us-spacewalks-host-preview-news-conference/",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 65,
+        "words": 681,
+        "headings": 0,
+        "links": 12,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 653,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-rs",
+        "status": "success",
+        "content_bytes": 5932,
+        "content_sha256": "58802be58d8ed2d9e08f6ce5a5d32b7810ea70ee0d6465b286f880276eca6f91",
+        "content_preview": "NASA astronaut Jessica Meir works inside the International Space Station’s Quest airlock in March, her reflection visible in a spacesuit helmet visor as she installs leg and arm components and swaps parts between suits. Credit: NASA/Jack Ha…",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "Lauren E. Low",
+          "canonical_url": "https://www.nasa.gov/news-release/nasa-to-cover-three-us-spacewalks-host-preview-news-conference/",
+          "description": "Editor’s Note: This advisory was updated on Aug. 10, 2026, to reflect the assigned crew members and coverage times for U.S. spacewalk 97, scheduled to",
+          "image": "https://www.nasa.gov/wp-content/uploads/2026/07/meir.jpg",
+          "keywords": "[Humans in Space International Space Station (ISS)]",
+          "language": "en-US",
+          "modified": "2026-08-10T13:43:50-04:00",
+          "published": "2026-07-27T14:35:11Z",
+          "site": "NASA",
+          "title": "NASA to Cover Three US Spacewalks, Host Preview News Conference"
+        },
+        "elapsed_ms": 653,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-006",
+      "case_name": "https://blog.rust-lang.org/2025/02/20/Rust-1.85.0/",
+      "participant": "defuddle",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 220,
+        "words": 1637,
+        "headings": 10,
+        "links": 74,
+        "images": 0,
+        "code_fences": 9,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 3
+      },
+      "elapsed_ms": 600,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "defuddle",
+        "status": "success",
+        "content_bytes": 16709,
+        "content_sha256": "c75e9bcb0660910e4646882411c4b767c39ad0abd4ef5dbde45ef6372c4a82cb",
+        "content_preview": "The Rust team is happy to announce a new version of Rust, 1.85.0. This stabilizes the 2024 edition as well. Rust is a programming language empowering everyone to build reliable and efficient software. If you have a previous version of Rust …",
+        "content_format": "markdown",
+        "metadata": {
+          "language": "en",
+          "site": "Rust Blog",
+          "title": "Announcing Rust 1.85.0 and Rust 2024"
+        },
+        "elapsed_ms": 600,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-006",
+      "case_name": "https://blog.rust-lang.org/2025/02/20/Rust-1.85.0/",
+      "participant": "readabilities-py",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 225,
+        "words": 1637,
+        "headings": 10,
+        "links": 74,
+        "images": 0,
+        "code_fences": 9,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 3
+      },
+      "elapsed_ms": 2731,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 16650,
+        "content_sha256": "4b3eded039deaccd1554fdea69ee0afa9da1a1b21bae2b8b78651bf9f866adc0",
+        "content_preview": "The Rust team is happy to announce a new version of Rust, 1.85.0. This stabilizes the 2024 edition as well. Rust is a programming language empowering everyone to build reliable and efficient software. If you have a previous version of Rust …",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "Feb. 20, 2025 · The Rust Release Team",
+          "title": "Announcing Rust 1.85.0 and Rust 2024 | Rust Blog"
+        },
+        "elapsed_ms": 2731,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-006",
+      "case_name": "https://blog.rust-lang.org/2025/02/20/Rust-1.85.0/",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 221,
+        "words": 1637,
+        "headings": 10,
+        "links": 74,
+        "images": 0,
+        "code_fences": 9,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 3
+      },
+      "elapsed_ms": 296,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-rs",
+        "status": "success",
+        "content_bytes": 16854,
+        "content_sha256": "0b9f717d413eacd9e97fb4691a246f4fbcbbaf7d3d3d4f5313594ffc4b0c5074",
+        "content_preview": "The Rust team is happy to announce a new version of Rust, 1.85.0. This stabilizes the 2024 edition as well. Rust is a programming language empowering everyone to build reliable and efficient software. If you have a previous version of Rust …",
+        "content_format": "markdown",
+        "metadata": {
+          "description": "Empowering everyone to build reliable and efficient software.",
+          "image": "https://www.rust-lang.org/static/images/rust-social-wide.jpg",
+          "language": "en",
+          "site": "Rust Blog",
+          "title": "Announcing Rust 1.85.0 and Rust 2024"
+        },
+        "elapsed_ms": 296,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-007",
+      "case_name": "https://news.ycombinator.com/",
+      "participant": "defuddle",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 8,
+        "words": 769,
+        "headings": 0,
+        "links": 17,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 1,
+        "noise_hits": 3,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 637,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "defuddle",
+        "status": "success",
+        "content_bytes": 14781,
+        "content_sha256": "ba70422d11b49fc3b83c47d70873290d6d6228f4516849c48566d6f0838bbad0",
+        "content_preview": "| | **[Hacker News](news)** [new](newest) \\| [past](front) \\| [comments](newcomments) \\| [ask](ask) \\| [show](show) \\| [jobs](jobs) \\| [submit](submit) | [login](login?goto=news) | | --- | --- | --- | 1. Nvidia Nemotron 3.5 Lightning and Ne…",
+        "content_format": "markdown",
+        "metadata": {
+          "language": "en",
+          "title": "Hacker News"
+        },
+        "elapsed_ms": 637,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-007",
+      "case_name": "https://news.ycombinator.com/",
+      "participant": "readabilities-py",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 1,
+        "words": 952,
+        "headings": 0,
+        "links": 181,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 3,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 2682,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 9964,
+        "content_sha256": "dbcb2d5595a563c2f5546c92ad4c87117990ab596e48c766e0d45bcf16abdaf6",
+        "content_preview": "| | | | | --- | --- | --- | | 1. | | [Nvidia Nemotron 3.5 Lightning and NeMo Switchyard](https://blogs.nvidia.com/blog/nemotron-lightning-switchyard-rtx-dgx/) ([nvidia.com](from?site=nvidia.com)) | | | | 115 points by [droidjj](user?id=droi…",
+        "content_format": "markdown",
+        "metadata": {
+          "title": "Hacker News"
+        },
+        "elapsed_ms": 2682,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-007",
+      "case_name": "https://news.ycombinator.com/",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 249,
+        "words": 727,
+        "headings": 0,
+        "links": 198,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 3,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 762,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-rs",
+        "status": "success",
+        "content_bytes": 16628,
+        "content_sha256": "5e6ff720b2099d6f9a98287ca10c9ffcba0b4226ccafe8e6ea29c40c67bc5077",
+        "content_preview": "**[Hacker News](https://news.ycombinator.com/news)**[new](https://news.ycombinator.com/newest) | [past](https://news.ycombinator.com/front) | [comments](https://news.ycombinator.com/newcomments) | [ask](https://news.ycombinator.com/ask) | […",
+        "content_format": "markdown",
+        "metadata": {
+          "language": "en",
+          "title": "Hacker News"
+        },
+        "elapsed_ms": 762,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-008",
+      "case_name": "https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/",
+      "participant": "defuddle",
+      "status": "fail",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "security_violations": [
+        "iframe_element"
+      ],
+      "markdown_stats": {
+        "lines": 58,
+        "words": 474,
+        "headings": 11,
+        "links": 9,
+        "images": 1,
+        "code_fences": 0,
+        "tables": 2,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 597,
+      "proof": "case=LIVE-008 failed_facts=[] security=[iframe_element] actual_preview=\"Accordion Example ## Read This First The code in this example is not intended for production environments. Before using it for any purpose, read this to understand why. This is an illustrative example of one way of using ARIA that conforms \"",
+      "native": {
+        "participant": "defuddle",
+        "status": "success",
+        "content_bytes": 3518,
+        "content_sha256": "49712be70e0328cccce02d38ac59dd2cb51789a4c4cd446fe17a09be97e196b3",
+        "content_preview": "Accordion Example ## Read This First The code in this example is not intended for production environments. Before using it for any purpose, read this to understand why. This is an illustrative example of one way of using ARIA that conforms …",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "W3C Web Accessibility Initiative (WAI)",
+          "language": "en",
+          "site": "Web Accessibility Initiative (WAI)",
+          "title": "Accordion Example"
+        },
+        "elapsed_ms": 597,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-008",
+      "case_name": "https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/",
+      "participant": "readabilities-py",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 53,
+        "words": 459,
+        "headings": 6,
+        "links": 9,
+        "images": 1,
+        "code_fences": 0,
+        "tables": 2,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 2286,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 3329,
+        "content_sha256": "0eb8791ef81120d3f92a610725b6b12b812bf5304a8eb23fde85282e754d5ed4",
+        "content_preview": "Accordion Example The code in this example is not intended for production environments. Before using it for any purpose, read this to understand why. This is an illustrative example of one way of using ARIA that conforms with the ARIA speci…",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "W3C Web Accessibility Initiative (WAI)",
+          "title": "Accordion Example"
+        },
+        "elapsed_ms": 2286,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "LIVE-008",
+      "case_name": "https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "markdown_stats": {
+        "lines": 56,
+        "words": 444,
+        "headings": 8,
+        "links": 8,
+        "images": 1,
+        "code_fences": 1,
+        "tables": 2,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 266,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-rs",
+        "status": "success",
+        "content_bytes": 5080,
+        "content_sha256": "ffbd38706061845eafb6d5591d08ad8c86a05054fbc996742239cf69b55a2950",
+        "content_preview": "Accordion Example ## Read This First The code in this example is not intended for production environments. Before using it for any purpose, read this to understand why. This is an illustrative example of one way of using ARIA that conforms …",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "W3C Web Accessibility Initiative (WAI)",
+          "canonical_url": "https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/",
+          "description": "Accessibility resources free online from the international standards organization: W3C Web Accessibility Initiative (WAI).",
+          "image": "https://www.w3.org/WAI/assets/images/social-sharing-default.jpg",
+          "language": "en",
+          "site": "Web Accessibility Initiative (WAI)",
+          "title": "Accordion Example"
+        },
+        "elapsed_ms": 266,
+        "exit_code": 0
+      }
+    }
+  ]
+}
