@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-002",
+  "fixture_sha256": "f99e6c0a0fb9510f3feb537a19074a89bf572a1431e71443c6042fe0d050ff11",
+  "status": "success",
+  "content": "REQUIRED-SHORT: Small pages are still real documents.",
+  "content_sha256": "0691eccc362c47e62ddfafaa69fd9669dc2144c9aa22600b3b6647e01057e779",
+  "metadata": {
+    "title": "A Short Note"
+  }
+}

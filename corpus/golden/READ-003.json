@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-003",
+  "fixture_sha256": "fd83681106a5caef1f60e9c058c985487c8cb829a2eb58dc35a50d03398d6a5d",
+  "status": "success",
+  "content": "必须保留：正文提取的第一步是判断页面中什么内容真正属于文章，而不是立刻把所有标签转换成 Markdown。\n\n必须保留：保守的去噪策略同时观察语义容器、文字密度、链接密度和常见的导航模式，并在结果过短时降低清理强度重试。\n\n必须保留：最终安全清理不可关闭，它会删除脚本、事件属性和危险链接，同时保留标题、代码、表格、图片和脚注等有意义的结构。",
+  "content_sha256": "1894f4489e8730fc649284da4b5495260a4e96b542602db30ed44070f7410464",
+  "metadata": {
+    "author": "示例作者",
+    "language": "zh-CN",
+    "site": "示例作者",
+    "title": "本地优先的正文提取"
+  }
+}

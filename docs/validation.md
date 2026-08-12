@@ -2,86 +2,66 @@
 
 Date: 2026-08-11
 
-## Contract gate before adapters
+## Selected Oracle: Defuddle
 
-The shared contract was first proved directly on `READ-001` through each native
-Markdown surface. All three preserved the required central idea, evidence, and
-footnote while rejecting related-content, newsletter, and footer facts. Rust
-additionally retained the Rust code language, resolved relative links/images,
-preserved the image-to-prose boundary and superscript, and passed its final
-sanitizer.
+The local `/Users/junix/defuddle` checkout was probed through its public CLI:
+`node dist/cli.js parse HTML --json --markdown` (Defuddle 0.19.2). The suite
+passes one static HTML snapshot to that CLI and to Rust; neither participant
+downloads a second copy. The adapter only normalizes Defuddle's JSON envelope
+and converts its explicit “No content could be extracted” diagnostic into the
+shared `no_content` status. All other nonzero exits remain failures.
 
-The empty-input path remained observably different rather than being normalized
-away: Defuddle returned a nonzero internal parse error, Python returned its
-native null/no-content projection, and Rust returned a nonzero typed
-`invalid_input`/`validate` error. The Python driver preserves this as
-`no_content`; it does not convert it into success.
+`record-golden --force` freezes Defuddle's status, Markdown, metadata, fixture
+SHA-256, and content SHA-256 for every reviewed self-authored fixture. Normal
+runs validate those digests. Explicit recording intentionally loads fixture
+definitions without the old Golden body so an approved fixture change can
+replace a stale Golden; it is the only path that bypasses the stale-digest
+check.
 
-## Frozen-corpus comparison
+## Oracle contract and safety boundary
 
-Command:
+The Golden asserts Defuddle's extraction status and at least 90% normalized
+token recall by Rust. Lines marked as fixture noise are excluded before this
+recall calculation, so Rust may safely remove declared noise. Required text,
+forbidden text, structure, Markdown, ordering, metadata, and Rust site-config
+facts remain independent checks.
 
-```sh
-./readabilities-suite run --profile offline \
-  --report reports/offline.json \
-  --markdown-report reports/offline.md
-```
+Defuddle is an extraction Oracle, not a security authority. On the captured
+MDN and W3C live snapshots it retained iframe markup, which the suite reports
+as two Oracle security observations. Rust's final sanitizer remains a hard
+gate and returned zero security violations. Oracle residue is visible but does
+not make a safe Rust response fail merely for omitting unsafe markup.
 
-Rust passed 16/16 and met the bounded best-evidence gate:
+## Defuddle-driven Rust refinement
 
-| Participant | Cases | Required | Noise | Structure | Markdown | Order | Metadata | Security |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Defuddle | 4/16 | 43/43 | 34/38 | 23/33 | 67/70 | 14/14 | 19/19 | 1 |
-| readabilities-py | 3/16 | 43/43 | 32/38 | 22/33 | 60/70 | 14/14 | 19/19 | 2 |
-| readabilities-rs | 16/16 | 43/43 | 38/38 | 33/33 | 70/70 | 14/14 | 19/19 | 0 |
+Defuddle considers the Hacker News front page and the self-authored `READ-017`
+reduction readable link-index content. Rust had converted this shape to typed
+`no_content` using a global link-density heuristic. The heuristic was removed:
+Rust now accepts the cleaned, non-empty extracted candidate, preserves list
+content, and still applies the mandatory sanitizer. `READ-017` now requires
+successful extraction and has a Rust regression test for its first and last
+entries.
 
-The added cases prove actual Markdown semantics (code language, absolute URLs,
-image spacing, math, footnotes), Medium/Wikipedia/MDN built-ins, an external
-configuration, and a useful no-config fallback. Defuddle and Python retain
-declared site noise in some cases; Python also loses code-language and math
-semantics. In the active-content case, Defuddle retains an iframe and Python
-retains script/dangerous-Markdown-URI evidence; Rust retains none.
+## Results
 
-## Deliberate mutation
+The refreshed offline corpus has 17 Defuddle Golden artifacts. Rust passed all
+17 direct cases, all 17 status/Golden comparisons, and the zero-security gate.
+Defuddle's own direct-score failures remain reported because the suite's richer
+structure and security assertions are deliberately independent of Oracle
+recall; they do not weaken the Rust release gate.
 
-A temporary fake Rust executable returned only:
+The same-snapshot live run passed all 14 Defuddle/Rust observations:
 
-```html
-<article><h1>Broken extractor</h1><p>This output intentionally omits every required fact.</p></article>
-```
+| Page | Rust status | Defuddle-token coverage |
+|---|---|---:|
+| English Wikipedia | success | 99.6% |
+| Chinese Wikipedia | success | 99.8% |
+| MDN article reference | success | 94.0% |
+| NASA news release | success | 100.0% |
+| Rust Blog | success | 100.0% |
+| Hacker News front page | success | 100.0% |
+| W3C ARIA accordion | success | 94.6% |
 
-Running only `READ-001` exited 1 and reported:
-
-```text
-READ-001/readabilities-rs:
-failed_facts=[REQUIRED-CENTRAL-IDEA REQUIRED-EVIDENCE REQUIRED-STRUCTURE
-REQUIRED-FOOTNOTE code table image footnote title author]
-actual_preview="Broken extractor This output intentionally omits every required fact."
-```
-
-The fake executable was external to the repository. The real participant was
-not changed; the complete baseline was rerun afterward.
-
-## Live common-snapshot smoke
-
-`just live-common` captures eight public page types once per run: Example Domain (short),
-English Wikipedia (long), Chinese Wikipedia, MDN technical documentation, a
-NASA news release, the Rust Blog, Hacker News (list/forum), and the W3C ARIA
-accordion example. See `reports/live-2026-08-11.json` for URL, digest, output
-size, bounded preview, status, security evidence, and timings.
-
-Final smoke result:
-
-| Participant | Native success | Suite pass | Security violations |
-|---|---:|---:|---:|
-| Defuddle | 8/8 | 6/8 | 2 iframe residues |
-| readabilities-py | 8/8 | 8/8 | 0 |
-| readabilities-rs | 8/8 | 8/8 | 0 |
-
-The first run found a false positive in Rust's post-sanitizer invariant: literal
-prose beginning `JavaScript:` was mistaken for a `javascript:` URI. The check
-was narrowed to URI-bearing HTML tags/attributes, a regression test was added,
-and the full live comparison was rerun. On the final run, Rust's Wikipedia and
-MDN configurations matched automatically; all other pages used the generic
-fallback. This live result is discovery evidence, not the frozen best-evidence
-gate, because there is no page-specific required/forbidden oracle.
+Live output is diagnostic only: public pages can drift, and no third-party
+page body is committed. A future mismatch must be reduced to a self-authored
+fixture, reviewed, and re-frozen before it becomes a release gate.

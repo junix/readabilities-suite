@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-004",
+  "fixture_sha256": "6fab6d4e68822e294791b5ae7dd1d8d039c9762b72415838175ae2c5e1980da6",
+  "status": "success",
+  "content": "REQUIRED-DOC: The parser accepts HTML and an optional base URL. The local path does not access the network.\n\n## Example\n\n```json\n{\"source\":\"html\",\"mode\":\"balanced\"}\n```\n\n## Parameters\n\n| Name | Meaning |\n| --- | --- |\n| source | Input HTML |\n| mode | Cleanup policy |\n\nREQUIRED-DOC-END: Rendering happens after extraction so changing output format cannot alter content selection.",
+  "content_sha256": "938c703158157b176caa73d2bfa10cd6d855f32a7190511db4380e4e82f37994",
+  "metadata": {
+    "title": "Parser API Guide"
+  }
+}

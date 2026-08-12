@@ -1,6 +1,6 @@
 {
-  "schema_version": 2,
-  "generated_at": "2026-08-11T22:03:27Z",
+  "schema_version": 3,
+  "generated_at": "2026-08-12T02:41:39Z",
   "profile": "offline",
   "targets": [
     {
@@ -17,24 +17,24 @@
       "prefix": [
         "run",
         "python",
-        "/Users/junix/projects/document-tools/readabilities-suite/drivers/readabilities_py.py"
+        "/Users/junix/projects/readabilities/readabilities-suite/drivers/readabilities_py.py"
       ],
-      "work_dir": "/Users/junix/projects/document-tools/readabilities-py",
+      "work_dir": "/Users/junix/projects/readabilities/readabilities-py",
       "available": true
     },
     {
       "id": "readabilities-rs",
-      "command": "/Users/junix/projects/document-tools/readabilities-rs/target/debug/readabilities-rs",
+      "command": "/Users/junix/projects/readabilities/readabilities-rs/target/debug/readabilities-rs",
       "available": true
     }
   ],
-  "total": 48,
-  "passed": 23,
-  "failed": 25,
+  "total": 51,
+  "passed": 27,
+  "failed": 24,
   "metrics": [
     {
       "participant": "defuddle",
-      "pass": 4,
+      "pass": 5,
       "fail": 12,
       "required_found": 43,
       "required_total": 43,
@@ -42,45 +42,49 @@
       "forbidden_total": 38,
       "structure_found": 23,
       "structure_total": 33,
-      "markdown_found": 67,
-      "markdown_total": 70,
+      "markdown_found": 71,
+      "markdown_total": 74,
       "order_found": 14,
       "order_total": 14,
       "metadata_found": 19,
       "metadata_total": 19,
       "security_violations": 1,
-      "elapsed_ms": 7572,
-      "markdown_bytes": 6537,
-      "markdown_words": 778,
+      "elapsed_ms": 10231,
+      "markdown_bytes": 10135,
+      "markdown_words": 995,
       "noise_hits": 1,
-      "duplicate_lines": 0
+      "duplicate_lines": 0,
+      "golden_pass": 17,
+      "golden_total": 17
     },
     {
       "participant": "readabilities-py",
-      "pass": 3,
-      "fail": 13,
-      "required_found": 43,
+      "pass": 5,
+      "fail": 12,
+      "required_found": 42,
       "required_total": 43,
-      "forbidden_rejected": 32,
+      "forbidden_rejected": 35,
       "forbidden_total": 38,
-      "structure_found": 22,
+      "structure_found": 26,
       "structure_total": 33,
-      "markdown_found": 60,
+      "markdown_found": 65,
       "markdown_total": 70,
-      "order_found": 14,
+      "order_found": 13,
       "order_total": 14,
-      "metadata_found": 19,
+      "metadata_found": 18,
       "metadata_total": 19,
-      "security_violations": 2,
-      "elapsed_ms": 40543,
-      "markdown_bytes": 6596,
-      "markdown_words": 778,
-      "noise_hits": 1,
-      "duplicate_lines": 0
+      "security_violations": 1,
+      "elapsed_ms": 27476,
+      "markdown_bytes": 6823,
+      "markdown_words": 809,
+      "noise_hits": 0,
+      "duplicate_lines": 0,
+      "golden_pass": 0,
+      "golden_total": 0
     },
     {
       "participant": "readabilities-rs",
-      "pass": 16,
+      "pass": 17,
       "fail": 0,
       "required_found": 43,
       "required_total": 43,
@@ -88,18 +92,20 @@
       "forbidden_total": 38,
       "structure_found": 33,
       "structure_total": 33,
-      "markdown_found": 70,
-      "markdown_total": 70,
+      "markdown_found": 74,
+      "markdown_total": 74,
       "order_found": 14,
       "order_total": 14,
       "metadata_found": 19,
       "metadata_total": 19,
       "security_violations": 0,
-      "elapsed_ms": 1954,
-      "markdown_bytes": 6788,
-      "markdown_words": 819,
+      "elapsed_ms": 817,
+      "markdown_bytes": 10499,
+      "markdown_words": 1026,
       "noise_hits": 0,
-      "duplicate_lines": 0
+      "duplicate_lines": 0,
+      "golden_pass": 17,
+      "golden_total": 17
     }
   ],
   "best_evidence": {
@@ -111,9 +117,9 @@
     "rust_markdown_at_least_best": true,
     "rust_order_at_least_best": true,
     "rust_metadata_at_least_best": true,
+    "rust_golden_conformant": true,
     "recall_leaders": [
       "defuddle",
-      "readabilities-py",
       "readabilities-rs"
     ],
     "noise_leaders": [
@@ -124,7 +130,6 @@
     ],
     "metadata_leaders": [
       "defuddle",
-      "readabilities-py",
       "readabilities-rs"
     ],
     "markdown_leaders": [
@@ -132,7 +137,6 @@
     ],
     "order_leaders": [
       "defuddle",
-      "readabilities-py",
       "readabilities-rs"
     ],
     "note": "Quality dimensions are release gates; elapsed time cannot compensate for lost content or retained noise. Eligibility is a corpus claim, not universal superiority."
@@ -252,6 +256,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 22,
         "words": 173,
@@ -263,7 +276,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 463,
+      "elapsed_ms": 628,
       "proof": "case=READ-001 failed_facts=[\"contains ](https://example.test/details)\" \"contains ](https://example.test/images/pipeline.png) The relative\"] security=[] actual_preview=\"REQUIRED-CENTRAL-IDEA: A readable-content engine should identify the document's main argument before it thinks about Markdown syntax. This ordering keeps navigation labels, advertisements, and subscription prompts from becoming apparently l\"",
       "native": {
         "participant": "defuddle",
@@ -279,7 +292,7 @@
           "site": "Example Journal",
           "title": "Local-First Reading Systems"
         },
-        "elapsed_ms": 463,
+        "elapsed_ms": 628,
         "exit_code": 0
       }
     },
@@ -328,7 +341,7 @@
         },
         {
           "fact": "code",
-          "pass": true
+          "pass": false
         },
         {
           "fact": "table",
@@ -340,7 +353,7 @@
         },
         {
           "fact": "footnote",
-          "pass": false
+          "pass": true
         }
       ],
       "markdown_fidelity": [
@@ -354,7 +367,7 @@
         },
         {
           "fact": "image and following prose remain separated",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "no NUL bytes",
@@ -366,19 +379,19 @@
         },
         {
           "fact": "contains ](https://example.test/details)",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "contains ](https://example.test/images/pipeline.png) The relative",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "contains \u003csup\u003e1\u003c/sup\u003e",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "rejects pipeline.png)The relative",
-          "pass": false
+          "pass": true
         }
       ],
       "content_order": [
@@ -398,30 +411,31 @@
         }
       ],
       "markdown_stats": {
-        "lines": 22,
+        "lines": 23,
         "words": 172,
-        "headings": 1,
-        "links": 2,
+        "headings": 2,
+        "links": 3,
         "images": 1,
-        "code_fences": 1,
+        "code_fences": 0,
         "tables": 1,
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2500,
-      "proof": "case=READ-001 failed_facts=[\"footnote\" \"image and following prose remain separated\" \"contains ```rust\" \"contains ](https://example.test/details)\" \"contains ](https://example.test/images/pipeline.png) The relative\" \"contains \u003csup\u003e1\u003c/sup\u003e\" \"rejects pipeline.png)The relative\"] security=[] actual_preview=\"REQUIRED-CENTRAL-IDEA: A readable-content engine should identify the document's main argument before it thinks about Markdown syntax. This ordering keeps navigation labels, advertisements, and subscription prompts from becoming apparently l\"",
+      "elapsed_ms": 1415,
+      "proof": "case=READ-001 failed_facts=[\"code\" \"contains ```rust\"] security=[] actual_preview=\"# Local-First Reading Systems REQUIRED-CENTRAL-IDEA: A readable-content engine should identify the document's main argument before it thinks about Markdown syntax. This ordering keeps navigation labels, advertisements, and subscription prom\"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 1285,
-        "content_sha256": "16b2a4314e5f061e674c186b30bb994ae5884e16169254f29f280cadb76b8f30",
-        "content_preview": "REQUIRED-CENTRAL-IDEA: A readable-content engine should identify the document's main argument before it thinks about Markdown syntax. This ordering keeps navigation labels, advertisements, and subscription prompts from becoming apparently l…",
+        "content_bytes": 1385,
+        "content_sha256": "cb5389f55ef34d8d84d9caf1d77b229cef34737d1ce59ee92c9949e1ad7cb560",
+        "content_preview": "# Local-First Reading Systems REQUIRED-CENTRAL-IDEA: A readable-content engine should identify the document's main argument before it thinks about Markdown syntax. This ordering keeps navigation labels, advertisements, and subscription prom…",
         "content_format": "markdown",
         "metadata": {
           "author": "Ada Example",
-          "title": "Local-First Reading Systems — Example Journal"
+          "published": "2026-08-11",
+          "title": "Local-First Reading Systems"
         },
-        "elapsed_ms": 2500,
+        "elapsed_ms": 1415,
         "exit_code": 0
       }
     },
@@ -539,6 +553,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 24,
         "words": 177,
@@ -550,7 +573,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 138,
+      "elapsed_ms": 47,
       "proof": "required=4 forbidden=3 structure=5 markdown=9 order=1 metadata=2 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -568,7 +591,7 @@
           "site": "Example Journal",
           "title": "Local-First Reading Systems — Example Journal"
         },
-        "elapsed_ms": 138,
+        "elapsed_ms": 47,
         "exit_code": 0
       }
     },
@@ -624,6 +647,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 1,
         "words": 7,
@@ -635,7 +667,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 443,
+      "elapsed_ms": 512,
       "proof": "case=READ-002 failed_facts=[\"heading\"] security=[] actual_preview=\"REQUIRED-SHORT: Small pages are still real documents.\"",
       "native": {
         "participant": "defuddle",
@@ -647,7 +679,7 @@
         "metadata": {
           "title": "A Short Note"
         },
-        "elapsed_ms": 443,
+        "elapsed_ms": 512,
         "exit_code": 0
       }
     },
@@ -655,85 +687,6 @@
       "case_id": "READ-002",
       "case_name": "short-note",
       "participant": "readabilities-py",
-      "status": "fail",
-      "native_status": "success",
-      "required": [
-        {
-          "fact": "REQUIRED-SHORT",
-          "pass": true
-        }
-      ],
-      "forbidden": [
-        {
-          "fact": "FORBIDDEN-SHORT-NAV",
-          "pass": true
-        },
-        {
-          "fact": "FORBIDDEN-SHORT-FOOTER",
-          "pass": true
-        }
-      ],
-      "structure": [
-        {
-          "fact": "heading",
-          "pass": false
-        }
-      ],
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "metadata": [
-        {
-          "fact": "title",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 1,
-        "words": 7,
-        "headings": 0,
-        "links": 0,
-        "images": 0,
-        "code_fences": 0,
-        "tables": 0,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 2550,
-      "proof": "case=READ-002 failed_facts=[\"heading\"] security=[] actual_preview=\"REQUIRED-SHORT: Small pages are still real documents.\"",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 53,
-        "content_sha256": "0691eccc362c47e62ddfafaa69fd9669dc2144c9aa22600b3b6647e01057e779",
-        "content_preview": "REQUIRED-SHORT: Small pages are still real documents.",
-        "content_format": "markdown",
-        "metadata": {
-          "title": "A Short Note"
-        },
-        "elapsed_ms": 2550,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "READ-002",
-      "case_name": "short-note",
-      "participant": "readabilities-rs",
       "status": "pass",
       "native_status": "success",
       "required": [
@@ -793,7 +746,95 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 143,
+      "elapsed_ms": 1756,
+      "proof": "required=1 forbidden=2 structure=1 markdown=4 order=0 metadata=1 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 69,
+        "content_sha256": "49f31eb8405cc246538494796c0cce099ab49df6b781bf1456eae60a644e1a9a",
+        "content_preview": "# A Short Note REQUIRED-SHORT: Small pages are still real documents.",
+        "content_format": "markdown",
+        "metadata": {
+          "title": "A Short Note"
+        },
+        "elapsed_ms": 1756,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "READ-002",
+      "case_name": "short-note",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "required": [
+        {
+          "fact": "REQUIRED-SHORT",
+          "pass": true
+        }
+      ],
+      "forbidden": [
+        {
+          "fact": "FORBIDDEN-SHORT-NAV",
+          "pass": true
+        },
+        {
+          "fact": "FORBIDDEN-SHORT-FOOTER",
+          "pass": true
+        }
+      ],
+      "structure": [
+        {
+          "fact": "heading",
+          "pass": true
+        }
+      ],
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "metadata": [
+        {
+          "fact": "title",
+          "pass": true
+        }
+      ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
+      "markdown_stats": {
+        "lines": 3,
+        "words": 11,
+        "headings": 1,
+        "links": 0,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 65,
       "proof": "required=1 forbidden=2 structure=1 markdown=4 order=0 metadata=1 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -805,7 +846,7 @@
         "metadata": {
           "title": "A Short Note"
         },
-        "elapsed_ms": 143,
+        "elapsed_ms": 65,
         "exit_code": 0
       }
     },
@@ -883,6 +924,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 5,
         "words": 4,
@@ -894,7 +944,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 422,
+      "elapsed_ms": 660,
       "proof": "case=READ-003 failed_facts=[\"heading\"] security=[] actual_preview=\"必须保留：正文提取的第一步是判断页面中什么内容真正属于文章，而不是立刻把所有标签转换成 Markdown。 必须保留：保守的去噪策略同时观察语义容器、文字密度、链接密度和常见的导航模式，并在结果过短时降低清理强度重试。 必须保留：最终安全清理不可关闭，它会删除脚本、事件属性和危险链接，同时保留标题、代码、表格、图片和脚注等有意义的结构。\"",
       "native": {
         "participant": "defuddle",
@@ -909,7 +959,7 @@
           "site": "示例作者",
           "title": "本地优先的正文提取"
         },
-        "elapsed_ms": 422,
+        "elapsed_ms": 660,
         "exit_code": 0
       }
     },
@@ -917,7 +967,7 @@
       "case_id": "READ-003",
       "case_name": "chinese-article",
       "participant": "readabilities-py",
-      "status": "pass",
+      "status": "fail",
       "native_status": "success",
       "required": [
         {
@@ -984,7 +1034,7 @@
         },
         {
           "fact": "author",
-          "pass": true
+          "pass": false
         }
       ],
       "markdown_stats": {
@@ -998,20 +1048,19 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2639,
-      "proof": "required=3 forbidden=3 structure=1 markdown=4 order=1 metadata=2 site=0 security=0",
+      "elapsed_ms": 1505,
+      "proof": "case=READ-003 failed_facts=[\"author\"] security=[] actual_preview=\"# 本地优先的正文提取 必须保留：正文提取的第一步是判断页面中什么内容真正属于文章，而不是立刻把所有标签转换成 Markdown。 必须保留：保守的去噪策略同时观察语义容器、文字密度、链接密度和常见的导航模式，并在结果过短时降低清理强度重试。 必须保留：最终安全清理不可关闭，它会删除脚本、事件属性和危险链接，同时保留标题、代码、表格、图片和脚注等有意义的结构。\"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 519,
-        "content_sha256": "7fe5e8f3ad474ebd853888aa7e1924500f39b6c4d6686db4d7de9c7c899cbc5a",
-        "content_preview": "## 本地优先的正文提取 必须保留：正文提取的第一步是判断页面中什么内容真正属于文章，而不是立刻把所有标签转换成 Markdown。 必须保留：保守的去噪策略同时观察语义容器、文字密度、链接密度和常见的导航模式，并在结果过短时降低清理强度重试。 必须保留：最终安全清理不可关闭，它会删除脚本、事件属性和危险链接，同时保留标题、代码、表格、图片和脚注等有意义的结构。",
+        "content_bytes": 518,
+        "content_sha256": "8ae72837967cd52ea74848b86baf1c46f81be4d03fb8cc0107ae2194c0c3ccdf",
+        "content_preview": "# 本地优先的正文提取 必须保留：正文提取的第一步是判断页面中什么内容真正属于文章，而不是立刻把所有标签转换成 Markdown。 必须保留：保守的去噪策略同时观察语义容器、文字密度、链接密度和常见的导航模式，并在结果过短时降低清理强度重试。 必须保留：最终安全清理不可关闭，它会删除脚本、事件属性和危险链接，同时保留标题、代码、表格、图片和脚注等有意义的结构。",
         "content_format": "markdown",
         "metadata": {
-          "author": "示例作者",
           "title": "本地优先的正文提取"
         },
-        "elapsed_ms": 2639,
+        "elapsed_ms": 1505,
         "exit_code": 0
       }
     },
@@ -1089,6 +1138,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 7,
         "words": 6,
@@ -1100,7 +1158,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 84,
+      "elapsed_ms": 39,
       "proof": "required=3 forbidden=3 structure=1 markdown=4 order=1 metadata=2 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -1112,10 +1170,9 @@
         "metadata": {
           "author": "示例作者",
           "language": "zh-CN",
-          "site": "示例作者",
           "title": "本地优先的正文提取"
         },
-        "elapsed_ms": 84,
+        "elapsed_ms": 39,
         "exit_code": 0
       }
     },
@@ -1193,6 +1250,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 16,
         "words": 60,
@@ -1204,7 +1270,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 495,
+      "elapsed_ms": 611,
       "proof": "required=2 forbidden=2 structure=3 markdown=5 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "defuddle",
@@ -1216,7 +1282,7 @@
         "metadata": {
           "title": "Parser API Guide"
         },
-        "elapsed_ms": 495,
+        "elapsed_ms": 611,
         "exit_code": 0
       }
     },
@@ -1253,7 +1319,7 @@
         },
         {
           "fact": "code",
-          "pass": true
+          "pass": false
         },
         {
           "fact": "table",
@@ -1295,29 +1361,29 @@
         }
       ],
       "markdown_stats": {
-        "lines": 16,
-        "words": 60,
-        "headings": 2,
+        "lines": 15,
+        "words": 58,
+        "headings": 3,
         "links": 0,
         "images": 0,
-        "code_fences": 1,
+        "code_fences": 0,
         "tables": 1,
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2595,
-      "proof": "case=READ-004 failed_facts=[\"contains ```json\"] security=[] actual_preview=\"REQUIRED-DOC: The parser accepts HTML and an optional base URL. The local path does not access the network. ## Example ``` {\\\"source\\\":\\\"html\\\",\\\"mode\\\":\\\"balanced\\\"} ``` ## Parameters | Name | Meaning | | --- | --- | | source | Input HTML | | mode\"",
+      "elapsed_ms": 1579,
+      "proof": "case=READ-004 failed_facts=[\"code\" \"contains ```json\"] security=[] actual_preview=\"# Parser API Guide REQUIRED-DOC: The parser accepts HTML and an optional base URL. The local path does not access the network. ## Example `{\\\"source\\\":\\\"html\\\",\\\"mode\\\":\\\"balanced\\\"}` ## Parameters | Name | Meaning | |---|---| | source | Input HTML\"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 375,
-        "content_sha256": "a19295848eaf30e8fb68558bcfcf07b33c5519f1b97656adff55fa83cc44aabc",
-        "content_preview": "REQUIRED-DOC: The parser accepts HTML and an optional base URL. The local path does not access the network. ## Example ``` {\"source\":\"html\",\"mode\":\"balanced\"} ``` ## Parameters | Name | Meaning | | --- | --- | | source | Input HTML | | mode…",
+        "content_bytes": 387,
+        "content_sha256": "e2c418f6a59197c46b03106c39a57ce0b4bcb3c39d33892ccd0285aaa8c5773f",
+        "content_preview": "# Parser API Guide REQUIRED-DOC: The parser accepts HTML and an optional base URL. The local path does not access the network. ## Example `{\"source\":\"html\",\"mode\":\"balanced\"}` ## Parameters | Name | Meaning | |---|---| | source | Input HTML…",
         "content_format": "markdown",
         "metadata": {
           "title": "Parser API Guide"
         },
-        "elapsed_ms": 2595,
+        "elapsed_ms": 1579,
         "exit_code": 0
       }
     },
@@ -1395,6 +1461,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 18,
         "words": 64,
@@ -1406,7 +1481,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 106,
+      "elapsed_ms": 47,
       "proof": "required=2 forbidden=2 structure=3 markdown=5 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -1418,7 +1493,7 @@
         "metadata": {
           "title": "Parser API Guide"
         },
-        "elapsed_ms": 106,
+        "elapsed_ms": 47,
         "exit_code": 0
       }
     },
@@ -1496,6 +1571,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 5,
         "words": 47,
@@ -1507,7 +1591,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 556,
+      "elapsed_ms": 532,
       "proof": "case=READ-005 failed_facts=[\"heading\"] security=[] actual_preview=\"REQUIRED-NEWS-LEDE: Marine researchers opened a public observation pier on Tuesday after three years of construction. REQUIRED-NEWS-QUOTE: The director said the facility will help students collect long-term measurements without disrupting c\"",
       "native": {
         "participant": "defuddle",
@@ -1521,7 +1605,7 @@
           "site": "Jordan Reporter",
           "title": "Harbor Opens New Research Pier"
         },
-        "elapsed_ms": 556,
+        "elapsed_ms": 532,
         "exit_code": 0
       }
     },
@@ -1529,108 +1613,6 @@
       "case_id": "READ-005",
       "case_name": "news-article",
       "participant": "readabilities-py",
-      "status": "fail",
-      "native_status": "success",
-      "required": [
-        {
-          "fact": "REQUIRED-NEWS-LEDE",
-          "pass": true
-        },
-        {
-          "fact": "REQUIRED-NEWS-QUOTE",
-          "pass": true
-        },
-        {
-          "fact": "REQUIRED-NEWS-CONTEXT",
-          "pass": true
-        }
-      ],
-      "forbidden": [
-        {
-          "fact": "FORBIDDEN-BREAKING",
-          "pass": true
-        },
-        {
-          "fact": "FORBIDDEN-TRENDING",
-          "pass": true
-        },
-        {
-          "fact": "FORBIDDEN-NEWS-FOOTER",
-          "pass": true
-        }
-      ],
-      "structure": [
-        {
-          "fact": "heading",
-          "pass": false
-        }
-      ],
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "content_order": [
-        {
-          "fact": "required facts preserve source order",
-          "pass": true
-        }
-      ],
-      "metadata": [
-        {
-          "fact": "title",
-          "pass": true
-        },
-        {
-          "fact": "author",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 5,
-        "words": 47,
-        "headings": 0,
-        "links": 0,
-        "images": 0,
-        "code_fences": 0,
-        "tables": 0,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 2622,
-      "proof": "case=READ-005 failed_facts=[\"heading\"] security=[] actual_preview=\"REQUIRED-NEWS-LEDE: Marine researchers opened a public observation pier on Tuesday after three years of construction. REQUIRED-NEWS-QUOTE: The director said the facility will help students collect long-term measurements without disrupting c\"",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 385,
-        "content_sha256": "085121b803ff264699aa33a04ef753a745b70ee82a621e7919680285696293c9",
-        "content_preview": "REQUIRED-NEWS-LEDE: Marine researchers opened a public observation pier on Tuesday after three years of construction. REQUIRED-NEWS-QUOTE: The director said the facility will help students collect long-term measurements without disrupting c…",
-        "content_format": "markdown",
-        "metadata": {
-          "author": "Jordan Reporter",
-          "title": "Harbor Opens New Research Pier"
-        },
-        "elapsed_ms": 2622,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "READ-005",
-      "case_name": "news-article",
-      "participant": "readabilities-rs",
       "status": "pass",
       "native_status": "success",
       "required": [
@@ -1712,7 +1694,118 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 165,
+      "elapsed_ms": 1634,
+      "proof": "required=3 forbidden=3 structure=1 markdown=4 order=1 metadata=2 site=0 security=0",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "success",
+        "content_bytes": 419,
+        "content_sha256": "9b29173cb9d9f02a0df3dd73175e0f2ee07c6b07aa976e94bdd709666991fa75",
+        "content_preview": "# Harbor Opens New Research Pier REQUIRED-NEWS-LEDE: Marine researchers opened a public observation pier on Tuesday after three years of construction. REQUIRED-NEWS-QUOTE: The director said the facility will help students collect long-term …",
+        "content_format": "markdown",
+        "metadata": {
+          "author": "Jordan Reporter",
+          "title": "Harbor Opens New Research Pier"
+        },
+        "elapsed_ms": 1634,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "READ-005",
+      "case_name": "news-article",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "required": [
+        {
+          "fact": "REQUIRED-NEWS-LEDE",
+          "pass": true
+        },
+        {
+          "fact": "REQUIRED-NEWS-QUOTE",
+          "pass": true
+        },
+        {
+          "fact": "REQUIRED-NEWS-CONTEXT",
+          "pass": true
+        }
+      ],
+      "forbidden": [
+        {
+          "fact": "FORBIDDEN-BREAKING",
+          "pass": true
+        },
+        {
+          "fact": "FORBIDDEN-TRENDING",
+          "pass": true
+        },
+        {
+          "fact": "FORBIDDEN-NEWS-FOOTER",
+          "pass": true
+        }
+      ],
+      "structure": [
+        {
+          "fact": "heading",
+          "pass": true
+        }
+      ],
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "content_order": [
+        {
+          "fact": "required facts preserve source order",
+          "pass": true
+        }
+      ],
+      "metadata": [
+        {
+          "fact": "title",
+          "pass": true
+        },
+        {
+          "fact": "author",
+          "pass": true
+        }
+      ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
+      "markdown_stats": {
+        "lines": 7,
+        "words": 53,
+        "headings": 1,
+        "links": 0,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 41,
       "proof": "required=3 forbidden=3 structure=1 markdown=4 order=1 metadata=2 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -1723,10 +1816,9 @@
         "content_format": "markdown",
         "metadata": {
           "author": "Jordan Reporter",
-          "site": "Jordan Reporter",
           "title": "Harbor Opens New Research Pier"
         },
-        "elapsed_ms": 165,
+        "elapsed_ms": 41,
         "exit_code": 0
       }
     },
@@ -1816,6 +1908,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 9,
         "words": 62,
@@ -1827,7 +1928,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 466,
+      "elapsed_ms": 647,
       "proof": "case=READ-006 failed_facts=[\"heading\"] security=[] actual_preview=\"REQUIRED-BLOG-ONE: Start by listing the operations that create impact noise, airborne noise, or vibration. - REQUIRED-BLOG-LIST: Separate machines from shared walls. - Seal gaps around doors before adding expensive panels. - Measure again a\"",
       "native": {
         "participant": "defuddle",
@@ -1839,7 +1940,7 @@
         "metadata": {
           "title": "Building a Quiet Workshop"
         },
-        "elapsed_ms": 466,
+        "elapsed_ms": 647,
         "exit_code": 0
       }
     },
@@ -1884,7 +1985,7 @@
       "structure": [
         {
           "fact": "heading",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "list",
@@ -1892,7 +1993,7 @@
         },
         {
           "fact": "blockquote",
-          "pass": true
+          "pass": false
         }
       ],
       "markdown_fidelity": [
@@ -1914,7 +2015,7 @@
         },
         {
           "fact": "contains \u003e REQUIRED-BLOG-QUOTE",
-          "pass": true
+          "pass": false
         }
       ],
       "content_order": [
@@ -1930,9 +2031,9 @@
         }
       ],
       "markdown_stats": {
-        "lines": 9,
-        "words": 62,
-        "headings": 0,
+        "lines": 11,
+        "words": 66,
+        "headings": 1,
         "links": 0,
         "images": 0,
         "code_fences": 0,
@@ -1940,19 +2041,19 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2636,
-      "proof": "case=READ-006 failed_facts=[\"heading\"] security=[] actual_preview=\"REQUIRED-BLOG-ONE: Start by listing the operations that create impact noise, airborne noise, or vibration. * REQUIRED-BLOG-LIST: Separate machines from shared walls. * Seal gaps around doors before adding expensive panels. * Measure again a\"",
+      "elapsed_ms": 1443,
+      "proof": "case=READ-006 failed_facts=[\"blockquote\" \"contains \u003e REQUIRED-BLOG-QUOTE\"] security=[] actual_preview=\"# Building a Quiet Workshop REQUIRED-BLOG-ONE: Start by listing the operations that create impact noise, airborne noise, or vibration. - REQUIRED-BLOG-LIST: Separate machines from shared walls. - Seal gaps around doors before adding expensi\"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 440,
-        "content_sha256": "1b60aedebd40200c0533e32bc68c5583445ca723c80b4d1ce5a6d5813801480f",
-        "content_preview": "REQUIRED-BLOG-ONE: Start by listing the operations that create impact noise, airborne noise, or vibration. * REQUIRED-BLOG-LIST: Separate machines from shared walls. * Seal gaps around doors before adding expensive panels. * Measure again a…",
+        "content_bytes": 467,
+        "content_sha256": "2548a749b0790854bed9b97b222bc2045a8b7da048df1419a9592b60dca54c8e",
+        "content_preview": "# Building a Quiet Workshop REQUIRED-BLOG-ONE: Start by listing the operations that create impact noise, airborne noise, or vibration. - REQUIRED-BLOG-LIST: Separate machines from shared walls. - Seal gaps around doors before adding expensi…",
         "content_format": "markdown",
         "metadata": {
           "title": "Building a Quiet Workshop"
         },
-        "elapsed_ms": 2636,
+        "elapsed_ms": 1443,
         "exit_code": 0
       }
     },
@@ -2042,6 +2143,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 11,
         "words": 67,
@@ -2053,7 +2163,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 157,
+      "elapsed_ms": 33,
       "proof": "required=4 forbidden=3 structure=3 markdown=5 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -2065,7 +2175,7 @@
         "metadata": {
           "title": "Building a Quiet Workshop"
         },
-        "elapsed_ms": 157,
+        "elapsed_ms": 33,
         "exit_code": 0
       }
     },
@@ -2139,6 +2249,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 11,
         "words": 49,
@@ -2150,7 +2269,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 538,
+      "elapsed_ms": 731,
       "proof": "required=3 forbidden=2 structure=2 markdown=4 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "defuddle",
@@ -2162,7 +2281,7 @@
         "metadata": {
           "title": "How do I preserve table structure?"
         },
-        "elapsed_ms": 538,
+        "elapsed_ms": 731,
         "exit_code": 0
       }
     },
@@ -2170,7 +2289,7 @@
       "case_id": "READ-007",
       "case_name": "forum-answer",
       "participant": "readabilities-py",
-      "status": "pass",
+      "status": "fail",
       "native_status": "success",
       "required": [
         {
@@ -2203,7 +2322,7 @@
         },
         {
           "fact": "code",
-          "pass": true
+          "pass": false
         }
       ],
       "markdown_fidelity": [
@@ -2237,29 +2356,29 @@
         }
       ],
       "markdown_stats": {
-        "lines": 11,
-        "words": 49,
-        "headings": 1,
+        "lines": 10,
+        "words": 54,
+        "headings": 2,
         "links": 0,
         "images": 0,
-        "code_fences": 1,
+        "code_fences": 0,
         "tables": 0,
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2699,
-      "proof": "required=3 forbidden=2 structure=2 markdown=4 order=1 metadata=1 site=0 security=0",
+      "elapsed_ms": 1561,
+      "proof": "case=READ-007 failed_facts=[\"code\"] security=[] actual_preview=\"# How do I preserve table structure? REQUIRED-QUESTION: I need to remove a documentation sidebar without flattening the table in the answer. ## Accepted answer REQUIRED-ANSWER: Select the main content before serialization, then whitelist se\"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 383,
-        "content_sha256": "893c60ac617347bb7fbb831357b35917010812205116edc99b064f33d6259256",
-        "content_preview": "REQUIRED-QUESTION: I need to remove a documentation sidebar without flattening the table in the answer. ## Accepted answer REQUIRED-ANSWER: Select the main content before serialization, then whitelist semantic table elements in the final sa…",
+        "content_bytes": 414,
+        "content_sha256": "17b8130b6d7b575e73416e61a02fe0f4eb15aa6db8cdb86f6dcfcc2179b32b96",
+        "content_preview": "# How do I preserve table structure? REQUIRED-QUESTION: I need to remove a documentation sidebar without flattening the table in the answer. ## Accepted answer REQUIRED-ANSWER: Select the main content before serialization, then whitelist se…",
         "content_format": "markdown",
         "metadata": {
           "title": "How do I preserve table structure?"
         },
-        "elapsed_ms": 2699,
+        "elapsed_ms": 1561,
         "exit_code": 0
       }
     },
@@ -2333,6 +2452,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 13,
         "words": 56,
@@ -2344,7 +2472,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 157,
+      "elapsed_ms": 44,
       "proof": "required=3 forbidden=2 structure=2 markdown=4 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -2356,7 +2484,7 @@
         "metadata": {
           "title": "How do I preserve table structure?"
         },
-        "elapsed_ms": 157,
+        "elapsed_ms": 44,
         "exit_code": 0
       }
     },
@@ -2438,6 +2566,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 9,
         "words": 41,
@@ -2449,7 +2586,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 534,
+      "elapsed_ms": 575,
       "proof": "case=READ-008 failed_facts=[\"heading\"] security=[] actual_preview=\"REQUIRED-MATH: The square of a sum can be expanded without changing its value. $$ a^{2} + 2 a b + b^{2} $$ REQUIRED-MATH-CONTEXT: This representation should survive cleaning even when the page contains unrelated widgets. 1. REQUIRED-MATH-FO\"",
       "native": {
         "participant": "defuddle",
@@ -2461,7 +2598,7 @@
         "metadata": {
           "title": "A Small Identity"
         },
-        "elapsed_ms": 534,
+        "elapsed_ms": 575,
         "exit_code": 0
       }
     },
@@ -2498,7 +2635,7 @@
       "structure": [
         {
           "fact": "heading",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "math",
@@ -2545,8 +2682,8 @@
       ],
       "markdown_stats": {
         "lines": 7,
-        "words": 33,
-        "headings": 0,
+        "words": 36,
+        "headings": 1,
         "links": 0,
         "images": 0,
         "code_fences": 0,
@@ -2554,19 +2691,19 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2483,
-      "proof": "case=READ-008 failed_facts=[\"heading\" \"math\" \"contains $$\\na^{2} + 2 a b + b^{2}\\n$$\"] security=[] actual_preview=\"REQUIRED-MATH: The square of a sum can be expanded without changing its value. a2+2ab+b2 REQUIRED-MATH-CONTEXT: This representation should survive cleaning even when the page contains unrelated widgets. 1. REQUIRED-MATH-FOOTNOTE: Variables \"",
+      "elapsed_ms": 1530,
+      "proof": "case=READ-008 failed_facts=[\"math\" \"contains $$\\na^{2} + 2 a b + b^{2}\\n$$\"] security=[] actual_preview=\"# A Small Identity REQUIRED-MATH: The square of a sum can be expanded without changing its value. REQUIRED-MATH-CONTEXT: This representation should survive cleaning even when the page contains unrelated widgets. 1. REQUIRED-MATH-FOOTNOTE: V\"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 263,
-        "content_sha256": "524206896933c4a9b30145b5216daf386c39c88b0d28a0887caf87ac15aedf1e",
-        "content_preview": "REQUIRED-MATH: The square of a sum can be expanded without changing its value. a2+2ab+b2 REQUIRED-MATH-CONTEXT: This representation should survive cleaning even when the page contains unrelated widgets. 1. REQUIRED-MATH-FOOTNOTE: Variables …",
+        "content_bytes": 272,
+        "content_sha256": "3e0db2c0ef2d9b1cde530a4bfb037c5450595dec0dfc8c6498241231d19be370",
+        "content_preview": "# A Small Identity REQUIRED-MATH: The square of a sum can be expanded without changing its value. REQUIRED-MATH-CONTEXT: This representation should survive cleaning even when the page contains unrelated widgets. 1. REQUIRED-MATH-FOOTNOTE: V…",
         "content_format": "markdown",
         "metadata": {
           "title": "A Small Identity"
         },
-        "elapsed_ms": 2483,
+        "elapsed_ms": 1530,
         "exit_code": 0
       }
     },
@@ -2648,6 +2785,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 11,
         "words": 45,
@@ -2659,7 +2805,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 133,
+      "elapsed_ms": 52,
       "proof": "required=3 forbidden=2 structure=3 markdown=5 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -2671,7 +2817,7 @@
         "metadata": {
           "title": "A Small Identity"
         },
-        "elapsed_ms": 133,
+        "elapsed_ms": 52,
         "exit_code": 0
       }
     },
@@ -2749,6 +2895,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 7,
         "words": 38,
@@ -2760,7 +2915,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 509,
+      "elapsed_ms": 622,
       "proof": "case=READ-009 failed_facts=[\"heading\" \"contains ![A marked field notebook](https://example.test/images/cover.jpg)\"] security=[] actual_preview=\"REQUIRED-IMAGE: Each image needs useful alternative text and an absolute URL in exported content. ![A marked field notebook](/images/cover.jpg) REQUIRED-CAPTION: Measurements recorded at sunrise. REQUIRED-IMAGE-END: Duplicate cover images s\"",
       "native": {
         "participant": "defuddle",
@@ -2772,7 +2927,7 @@
         "metadata": {
           "title": "Field Notes in Pictures"
         },
-        "elapsed_ms": 509,
+        "elapsed_ms": 622,
         "exit_code": 0
       }
     },
@@ -2789,7 +2944,7 @@
         },
         {
           "fact": "REQUIRED-CAPTION",
-          "pass": true
+          "pass": false
         },
         {
           "fact": "REQUIRED-IMAGE-END",
@@ -2809,7 +2964,7 @@
       "structure": [
         {
           "fact": "heading",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "image",
@@ -2835,13 +2990,13 @@
         },
         {
           "fact": "contains ![A marked field notebook](https://example.test/images/cover.jpg)",
-          "pass": false
+          "pass": true
         }
       ],
       "content_order": [
         {
           "fact": "required facts preserve source order",
-          "pass": true
+          "pass": false
         }
       ],
       "metadata": [
@@ -2853,7 +3008,7 @@
       "markdown_stats": {
         "lines": 7,
         "words": 38,
-        "headings": 0,
+        "headings": 1,
         "links": 1,
         "images": 1,
         "code_fences": 0,
@@ -2861,19 +3016,19 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2478,
-      "proof": "case=READ-009 failed_facts=[\"heading\" \"contains ![A marked field notebook](https://example.test/images/cover.jpg)\"] security=[] actual_preview=\"REQUIRED-IMAGE: Each image needs useful alternative text and an absolute URL in exported content. ![A marked field notebook](/images/cover.jpg) REQUIRED-CAPTION: Measurements recorded at sunrise. REQUIRED-IMAGE-END: Duplicate cover images s\"",
+      "elapsed_ms": 1681,
+      "proof": "case=READ-009 failed_facts=[\"REQUIRED-CAPTION\" \"required facts preserve source order\"] security=[] actual_preview=\"# Field Notes in Pictures REQUIRED-IMAGE: Each image needs useful alternative text and an absolute URL in exported content. ![A marked field notebook](https://example.test/images/cover.jpg) REQUIRED-IMAGE-END: Duplicate cover images should \"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 315,
-        "content_sha256": "c3a2b817302bf916b25a5a27d6f03dd5f263ab3651b7d666758cbe70850cff31",
-        "content_preview": "REQUIRED-IMAGE: Each image needs useful alternative text and an absolute URL in exported content. ![A marked field notebook](/images/cover.jpg) REQUIRED-CAPTION: Measurements recorded at sunrise. REQUIRED-IMAGE-END: Duplicate cover images s…",
+        "content_bytes": 309,
+        "content_sha256": "5f24787aa48870f809a778c9b1a54f3187bd21f3cd3b12788a626d8187235ee8",
+        "content_preview": "# Field Notes in Pictures REQUIRED-IMAGE: Each image needs useful alternative text and an absolute URL in exported content. ![A marked field notebook](https://example.test/images/cover.jpg) REQUIRED-IMAGE-END: Duplicate cover images should …",
         "content_format": "markdown",
         "metadata": {
           "title": "Field Notes in Pictures"
         },
-        "elapsed_ms": 2478,
+        "elapsed_ms": 1681,
         "exit_code": 0
       }
     },
@@ -2951,6 +3106,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 9,
         "words": 43,
@@ -2962,7 +3126,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 81,
+      "elapsed_ms": 68,
       "proof": "required=3 forbidden=2 structure=2 markdown=5 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -2975,7 +3139,7 @@
           "image": "https://example.test/images/cover.jpg",
           "title": "Field Notes in Pictures"
         },
-        "elapsed_ms": 81,
+        "elapsed_ms": 68,
         "exit_code": 0
       }
     },
@@ -3048,6 +3212,15 @@
       "security_violations": [
         "iframe_element"
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 5,
         "words": 23,
@@ -3059,7 +3232,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 473,
+      "elapsed_ms": 531,
       "proof": "case=READ-010 failed_facts=[\"heading\"] security=[iframe_element] actual_preview=\"REQUIRED-SECURITY: Untrusted HTML must cross a final sanitizer after every extraction backend. REQUIRED-SECURITY-STRUCTURE: Normal paragraph text remains visible. unsafe data link ![safe image](https://example.test/safe.png)\"",
       "native": {
         "participant": "defuddle",
@@ -3071,7 +3244,7 @@
         "metadata": {
           "title": "Safe Rendering"
         },
-        "elapsed_ms": 473,
+        "elapsed_ms": 531,
         "exit_code": 0
       }
     },
@@ -3079,7 +3252,7 @@
       "case_id": "READ-010",
       "case_name": "active-content-security",
       "participant": "readabilities-py",
-      "status": "fail",
+      "status": "pass",
       "native_status": "success",
       "required": [
         {
@@ -3104,7 +3277,7 @@
       "structure": [
         {
           "fact": "heading",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "image",
@@ -3142,13 +3315,12 @@
         }
       ],
       "security_violations": [
-        "script_element",
-        "dangerous_markdown_uri"
+        "script_element"
       ],
       "markdown_stats": {
-        "lines": 5,
-        "words": 24,
-        "headings": 0,
+        "lines": 9,
+        "words": 28,
+        "headings": 1,
         "links": 2,
         "images": 1,
         "code_fences": 0,
@@ -3156,19 +3328,19 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2528,
-      "proof": "case=READ-010 failed_facts=[\"heading\"] security=[script_element dangerous_markdown_uri] actual_preview=\"REQUIRED-SECURITY: Untrusted HTML must cross a final sanitizer after every extraction backend. REQUIRED-SECURITY-STRUCTURE: Normal paragraph text remains visible. [unsafe data link](data:text/html, steal() )![safe image](https://example.tes\"",
+      "elapsed_ms": 1498,
+      "proof": "required=2 forbidden=2 structure=2 markdown=4 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 268,
-        "content_sha256": "9c3f2c2e0408459c61c23bd0da7e07ba1b6bd6c1457161ec51e8e7fc961a4e63",
-        "content_preview": "REQUIRED-SECURITY: Untrusted HTML must cross a final sanitizer after every extraction backend. REQUIRED-SECURITY-STRUCTURE: Normal paragraph text remains visible. [unsafe data link](data:text/html, steal() )![safe image](https://example.tes…",
+        "content_bytes": 294,
+        "content_sha256": "6f2bab3f1c907d4077e3373742a20fe59932394d079f8e5071f844acf2712665",
+        "content_preview": "# Safe Rendering REQUIRED-SECURITY: Untrusted HTML must cross a final sanitizer after every extraction backend. REQUIRED-SECURITY-STRUCTURE: Normal paragraph text remains visible. [unsafe data link]( steal()\\ \u003e) ![safe image](https://exampl…",
         "content_format": "markdown",
         "metadata": {
           "title": "Safe Rendering"
         },
-        "elapsed_ms": 2528,
+        "elapsed_ms": 1498,
         "exit_code": 0
       }
     },
@@ -3238,6 +3410,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 7,
         "words": 25,
@@ -3249,7 +3430,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 131,
+      "elapsed_ms": 40,
       "proof": "required=2 forbidden=2 structure=2 markdown=4 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -3261,7 +3442,7 @@
         "metadata": {
           "title": "Safe Rendering"
         },
-        "elapsed_ms": 131,
+        "elapsed_ms": 40,
         "exit_code": 0
       }
     },
@@ -3270,7 +3451,14 @@
       "case_name": "empty-input-validation",
       "participant": "defuddle",
       "status": "pass",
-      "native_status": "failure",
+      "native_status": "no_content",
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "no_content",
+        "actual_status": "no_content",
+        "status_pass": true,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 0,
         "words": 0,
@@ -3282,15 +3470,15 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 385,
+      "elapsed_ms": 590,
       "proof": "validation/no-content path remained distinguishable",
       "native": {
         "participant": "defuddle",
-        "status": "failure",
+        "status": "no_content",
         "content_bytes": 0,
-        "elapsed_ms": 385,
+        "elapsed_ms": 590,
         "exit_code": 1,
-        "stderr": "Error: Cannot destructure property 'firstElementChild' of 'documentElement' as it is null."
+        "stderr": "Error: No content could be extracted from /Users/junix/projects/readabilities/readabilities-suite/corpus/fixtures/READ-011-empty.html"
       }
     },
     {
@@ -3310,15 +3498,19 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2616,
+      "elapsed_ms": 1581,
       "proof": "validation/no-content path remained distinguishable",
       "native": {
         "participant": "readabilities-py",
         "status": "no_content",
         "content_bytes": 0,
         "content_format": "markdown",
-        "elapsed_ms": 2616,
-        "exit_code": 0
+        "metadata": {
+          "title": "Empty document"
+        },
+        "elapsed_ms": 1581,
+        "exit_code": 0,
+        "stderr": "2026-08-11 19:41:33,332 - WARNING - discarding data: None"
       }
     },
     {
@@ -3326,7 +3518,14 @@
       "case_name": "empty-input-validation",
       "participant": "readabilities-rs",
       "status": "pass",
-      "native_status": "failure",
+      "native_status": "no_content",
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "no_content",
+        "actual_status": "no_content",
+        "status_pass": true,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 0,
         "words": 0,
@@ -3338,16 +3537,16 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 73,
+      "elapsed_ms": 41,
       "proof": "validation/no-content path remained distinguishable",
       "native": {
         "participant": "readabilities-rs",
-        "status": "failure",
+        "status": "no_content",
         "content_bytes": 0,
         "content_format": "markdown",
-        "elapsed_ms": 73,
+        "elapsed_ms": 41,
         "exit_code": 1,
-        "stderr": "{\"kind\":\"no_content\",\"stage\":\"locate\",\"backend\":\"local\",\"message\":\"no readable content remained after extraction and sanitization\",\"retry\":\"never\",\"completed_attempts\":[{\"engine\":\"decruft\",\"mode\":\"balanced\",\"elapsed_ms\":25,\"selected\":false,\"quality\":\"weak\",\"score\":0},{\"engine\":\"decruft\",\"mode\":\"conservative\",\"elapsed_ms\":10,\"selected\":true,\"quality\":\"weak\",\"score\":0}]}"
+        "stderr": "{\"kind\":\"no_content\",\"stage\":\"locate\",\"backend\":\"local\",\"message\":\"no readable content remained after extraction and sanitization\",\"retry\":\"never\",\"completed_attempts\":[{\"engine\":\"readabilities-rs\",\"mode\":\"balanced\",\"elapsed_ms\":11,\"selected\":true,\"quality\":\"weak\",\"score\":0},{\"engine\":\"readabilities-rs\",\"mode\":\"conservative\",\"elapsed_ms\":0,\"selected\":false,\"quality\":\"weak\",\"score\":0}]}"
       }
     },
     {
@@ -3428,6 +3627,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 9,
         "words": 59,
@@ -3439,7 +3647,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 429,
+      "elapsed_ms": 584,
       "proof": "case=READ-012 failed_facts=[\"FORBIDDEN-MEDIUM-PROMO\" \"heading\"] security=[] actual_preview=\"REQUIRED-MEDIUM-OPEN: A site profile should narrow known layout noise without replacing the general readability engine. REQUIRED-MEDIUM-BODY: The portable default still identifies paragraphs, headings, lists, links, and code when no profile\"",
       "native": {
         "participant": "defuddle",
@@ -3453,7 +3661,7 @@
           "site": "Medium",
           "title": "A Quiet Extraction Layer"
         },
-        "elapsed_ms": 429,
+        "elapsed_ms": 584,
         "exit_code": 0
       }
     },
@@ -3484,7 +3692,7 @@
         },
         {
           "fact": "FORBIDDEN-MEDIUM-RELATED",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "FORBIDDEN-MEDIUM-CLAP",
@@ -3494,7 +3702,7 @@
       "structure": [
         {
           "fact": "heading",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "list",
@@ -3538,7 +3746,7 @@
       "markdown_stats": {
         "lines": 12,
         "words": 64,
-        "headings": 0,
+        "headings": 1,
         "links": 1,
         "images": 0,
         "code_fences": 0,
@@ -3546,20 +3754,20 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2520,
-      "proof": "case=READ-012 failed_facts=[\"FORBIDDEN-MEDIUM-PROMO\" \"FORBIDDEN-MEDIUM-RELATED\" \"heading\"] security=[] actual_preview=\"REQUIRED-MEDIUM-OPEN: A site profile should narrow known layout noise without replacing the general readability engine. REQUIRED-MEDIUM-BODY: The portable default still identifies paragraphs, headings, lists, links, and code when no profile\"",
+      "elapsed_ms": 1589,
+      "proof": "case=READ-012 failed_facts=[\"FORBIDDEN-MEDIUM-PROMO\"] security=[] actual_preview=\"# A Quiet Extraction Layer REQUIRED-MEDIUM-OPEN: A site profile should narrow known layout noise without replacing the general readability engine. REQUIRED-MEDIUM-BODY: The portable default still identifies paragraphs, headings, lists, link\"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 557,
-        "content_sha256": "786b4196a2fbb1bfc36121798f4057a7c34aa20e3db1f514306423cc2484bdeb",
-        "content_preview": "REQUIRED-MEDIUM-OPEN: A site profile should narrow known layout noise without replacing the general readability engine. REQUIRED-MEDIUM-BODY: The portable default still identifies paragraphs, headings, lists, links, and code when no profile…",
+        "content_bytes": 531,
+        "content_sha256": "05d1fa3e12ec11a359a1c7793629c52e32a6b7de3e6f68a9f5a3ea51e2129a15",
+        "content_preview": "# A Quiet Extraction Layer REQUIRED-MEDIUM-OPEN: A site profile should narrow known layout noise without replacing the general readability engine. REQUIRED-MEDIUM-BODY: The portable default still identifies paragraphs, headings, lists, link…",
         "content_format": "markdown",
         "metadata": {
           "author": "Morgan Writer",
           "title": "A Quiet Extraction Layer"
         },
-        "elapsed_ms": 2520,
+        "elapsed_ms": 1589,
         "exit_code": 0
       }
     },
@@ -3647,6 +3855,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 10,
         "words": 58,
@@ -3658,7 +3875,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 138,
+      "elapsed_ms": 61,
       "proof": "required=3 forbidden=3 structure=2 markdown=4 order=1 metadata=2 site=1 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -3673,7 +3890,7 @@
           "site": "Medium",
           "title": "A Quiet Extraction Layer"
         },
-        "elapsed_ms": 138,
+        "elapsed_ms": 61,
         "exit_code": 0
       }
     },
@@ -3751,6 +3968,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 11,
         "words": 55,
@@ -3762,7 +3988,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 483,
+      "elapsed_ms": 554,
       "proof": "case=READ-013 failed_facts=[\"FORBIDDEN-WIKI-NAVBOX\"] security=[] actual_preview=\"REQUIRED-WIKI-LEDE: Readable content extraction identifies the primary document while excluding interface chrome. ## History REQUIRED-WIKI-HISTORY: Early systems combined semantic containers with text and link density. - Generic extraction \"",
       "native": {
         "participant": "defuddle",
@@ -3775,7 +4001,7 @@
           "site": "Wikipedia",
           "title": "Readable content"
         },
-        "elapsed_ms": 483,
+        "elapsed_ms": 554,
         "exit_code": 0
       }
     },
@@ -3854,9 +4080,9 @@
         }
       ],
       "markdown_stats": {
-        "lines": 14,
-        "words": 58,
-        "headings": 1,
+        "lines": 15,
+        "words": 63,
+        "headings": 2,
         "links": 0,
         "images": 0,
         "code_fences": 0,
@@ -3864,19 +4090,19 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2466,
-      "proof": "case=READ-013 failed_facts=[\"FORBIDDEN-WIKI-EDIT\" \"FORBIDDEN-WIKI-NAVBOX\"] security=[] actual_preview=\"REQUIRED-WIKI-LEDE: Readable content extraction identifies the primary document while excluding interface chrome. FORBIDDEN-WIKI-EDIT: edit section ## History REQUIRED-WIKI-HISTORY: Early systems combined semantic containers with text and l\"",
+      "elapsed_ms": 1496,
+      "proof": "case=READ-013 failed_facts=[\"FORBIDDEN-WIKI-EDIT\" \"FORBIDDEN-WIKI-NAVBOX\"] security=[] actual_preview=\"# Readable content REQUIRED-WIKI-LEDE: Readable content extraction identifies the primary document while excluding interface chrome. FORBIDDEN-WIKI-EDIT: edit section ## History REQUIRED-WIKI-HISTORY: Early systems combined semantic contain\"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 492,
-        "content_sha256": "6795f8c8517f23972782a631dc11aa20160eed77d48f38101ef636db081128a5",
-        "content_preview": "REQUIRED-WIKI-LEDE: Readable content extraction identifies the primary document while excluding interface chrome. FORBIDDEN-WIKI-EDIT: edit section ## History REQUIRED-WIKI-HISTORY: Early systems combined semantic containers with text and l…",
+        "content_bytes": 516,
+        "content_sha256": "63d44f03da5135f71366394853f087824095d885324df47dbcf3d295d633be7a",
+        "content_preview": "# Readable content REQUIRED-WIKI-LEDE: Readable content extraction identifies the primary document while excluding interface chrome. FORBIDDEN-WIKI-EDIT: edit section ## History REQUIRED-WIKI-HISTORY: Early systems combined semantic contain…",
         "content_format": "markdown",
         "metadata": {
           "title": "Readable content - Wikipedia"
         },
-        "elapsed_ms": 2466,
+        "elapsed_ms": 1496,
         "exit_code": 0
       }
     },
@@ -3960,6 +4186,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 10,
         "words": 51,
@@ -3971,7 +4206,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 112,
+      "elapsed_ms": 35,
       "proof": "required=3 forbidden=3 structure=2 markdown=4 order=1 metadata=1 site=1 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -3982,10 +4217,9 @@
         "content_format": "markdown",
         "site_config": "wikipedia",
         "metadata": {
-          "site": "Wikipedia",
-          "title": "Readable content"
+          "title": "Readable content - Wikipedia"
         },
-        "elapsed_ms": 112,
+        "elapsed_ms": 35,
         "exit_code": 0
       }
     },
@@ -4067,6 +4301,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 13,
         "words": 42,
@@ -4078,7 +4321,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 467,
+      "elapsed_ms": 676,
       "proof": "required=3 forbidden=3 structure=2 markdown=5 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "defuddle",
@@ -4091,7 +4334,7 @@
           "site": "MDN",
           "title": "ReadableContent - Web APIs"
         },
-        "elapsed_ms": 467,
+        "elapsed_ms": 676,
         "exit_code": 0
       }
     },
@@ -4136,7 +4379,7 @@
         },
         {
           "fact": "code",
-          "pass": true
+          "pass": false
         }
       ],
       "markdown_fidelity": [
@@ -4174,29 +4417,29 @@
         }
       ],
       "markdown_stats": {
-        "lines": 11,
+        "lines": 10,
         "words": 40,
-        "headings": 1,
+        "headings": 2,
         "links": 0,
         "images": 0,
-        "code_fences": 1,
+        "code_fences": 0,
         "tables": 0,
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2617,
-      "proof": "case=READ-014 failed_facts=[\"contains ```js\"] security=[] actual_preview=\"REQUIRED-MDN-SUMMARY: The ReadableContent interface represents a cleaned document selected from an HTML snapshot. ## Syntax ``` const article = reader.extract(html); ``` REQUIRED-MDN-SYNTAX: Rendering Markdown happens after the content sele\"",
+      "elapsed_ms": 1555,
+      "proof": "case=READ-014 failed_facts=[\"code\" \"contains ```js\"] security=[] actual_preview=\"# ReadableContent REQUIRED-MDN-SUMMARY: The ReadableContent interface represents a cleaned document selected from an HTML snapshot. ## Syntax `const article = reader.extract(html);` REQUIRED-MDN-SYNTAX: Rendering Markdown happens after the \"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 346,
-        "content_sha256": "19825d262e1e23bda1fad824ee4359cc8429778b444a1f42e293bdf220420c66",
-        "content_preview": "REQUIRED-MDN-SUMMARY: The ReadableContent interface represents a cleaned document selected from an HTML snapshot. ## Syntax ``` const article = reader.extract(html); ``` REQUIRED-MDN-SYNTAX: Rendering Markdown happens after the content sele…",
+        "content_bytes": 358,
+        "content_sha256": "d5437abd73fc12ce848bc8b6d64e3c27c50903d286eaa883e9221329bd09b1e9",
+        "content_preview": "# ReadableContent REQUIRED-MDN-SUMMARY: The ReadableContent interface represents a cleaned document selected from an HTML snapshot. ## Syntax `const article = reader.extract(html);` REQUIRED-MDN-SYNTAX: Rendering Markdown happens after the …",
         "content_format": "markdown",
         "metadata": {
-          "title": "ReadableContent - Web APIs | MDN"
+          "title": "ReadableContent"
         },
-        "elapsed_ms": 2617,
+        "elapsed_ms": 1555,
         "exit_code": 0
       }
     },
@@ -4284,6 +4527,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 13,
         "words": 42,
@@ -4295,7 +4547,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 114,
+      "elapsed_ms": 67,
       "proof": "required=3 forbidden=3 structure=2 markdown=5 order=1 metadata=1 site=1 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -4306,10 +4558,9 @@
         "content_format": "markdown",
         "site_config": "mdn",
         "metadata": {
-          "site": "MDN",
-          "title": "ReadableContent - Web APIs"
+          "title": "ReadableContent - Web APIs | MDN"
         },
-        "elapsed_ms": 114,
+        "elapsed_ms": 67,
         "exit_code": 0
       }
     },
@@ -4387,6 +4638,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 7,
         "words": 63,
@@ -4398,7 +4658,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 431,
+      "elapsed_ms": 573,
       "proof": "case=READ-015 failed_facts=[\"heading\"] security=[] actual_preview=\"REQUIRED-GENERIC-OPEN: Most domains will never receive a dedicated site profile, so the default path must remain useful. REQUIRED-GENERIC-BODY: Semantic containers, text density, link density, and conservative retry behavior provide a stron\"",
       "native": {
         "participant": "defuddle",
@@ -4410,7 +4670,7 @@
         "metadata": {
           "title": "Generic Extraction Still Matters"
         },
-        "elapsed_ms": 431,
+        "elapsed_ms": 573,
         "exit_code": 0
       }
     },
@@ -4451,11 +4711,11 @@
       "structure": [
         {
           "fact": "heading",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "blockquote",
-          "pass": true
+          "pass": false
         }
       ],
       "markdown_fidelity": [
@@ -4489,9 +4749,9 @@
         }
       ],
       "markdown_stats": {
-        "lines": 7,
-        "words": 63,
-        "headings": 0,
+        "lines": 9,
+        "words": 67,
+        "headings": 1,
         "links": 0,
         "images": 0,
         "code_fences": 0,
@@ -4499,19 +4759,19 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2481,
-      "proof": "case=READ-015 failed_facts=[\"heading\"] security=[] actual_preview=\"REQUIRED-GENERIC-OPEN: Most domains will never receive a dedicated site profile, so the default path must remain useful. REQUIRED-GENERIC-BODY: Semantic containers, text density, link density, and conservative retry behavior provide a stron\"",
+      "elapsed_ms": 1438,
+      "proof": "case=READ-015 failed_facts=[\"blockquote\"] security=[] actual_preview=\"# Generic Extraction Still Matters REQUIRED-GENERIC-OPEN: Most domains will never receive a dedicated site profile, so the default path must remain useful. REQUIRED-GENERIC-BODY: Semantic containers, text density, link density, and conserva\"",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 455,
-        "content_sha256": "c402b2664ada68f4581206e8cd58654aa6b422752194ef88ad2e44706e403beb",
-        "content_preview": "REQUIRED-GENERIC-OPEN: Most domains will never receive a dedicated site profile, so the default path must remain useful. REQUIRED-GENERIC-BODY: Semantic containers, text density, link density, and conservative retry behavior provide a stron…",
+        "content_bytes": 489,
+        "content_sha256": "2239df526506fffd6f994b419554feb023dffcfa6e474d10bbb66efa5635f2cd",
+        "content_preview": "# Generic Extraction Still Matters REQUIRED-GENERIC-OPEN: Most domains will never receive a dedicated site profile, so the default path must remain useful. REQUIRED-GENERIC-BODY: Semantic containers, text density, link density, and conserva…",
         "content_format": "markdown",
         "metadata": {
           "title": "Generic Extraction Still Matters"
         },
-        "elapsed_ms": 2481,
+        "elapsed_ms": 1438,
         "exit_code": 0
       }
     },
@@ -4595,6 +4855,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 9,
         "words": 68,
@@ -4606,7 +4875,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 116,
+      "elapsed_ms": 35,
       "proof": "required=3 forbidden=3 structure=2 markdown=4 order=1 metadata=1 site=1 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -4618,7 +4887,7 @@
         "metadata": {
           "title": "Generic Extraction Still Matters"
         },
-        "elapsed_ms": 116,
+        "elapsed_ms": 35,
         "exit_code": 0
       }
     },
@@ -4692,6 +4961,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 12,
         "words": 55,
@@ -4703,7 +4981,7 @@
         "noise_hits": 1,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 478,
+      "elapsed_ms": 585,
       "proof": "case=READ-016 failed_facts=[\"FORBIDDEN-CUSTOM-SPONSOR\" \"FORBIDDEN-CUSTOM-TOOLS\" \"heading\"] security=[] actual_preview=\"REQUIRED-CUSTOM-OPEN: A caller can load a declarative profile without rebuilding the Rust crate. REQUIRED-CUSTOM-BODY: Host matching is boundary aware and selectors are validated before extraction starts. - Choose the content root. - Remove\"",
       "native": {
         "participant": "defuddle",
@@ -4715,7 +4993,7 @@
         "metadata": {
           "title": "Loading a Site Profile"
         },
-        "elapsed_ms": 478,
+        "elapsed_ms": 585,
         "exit_code": 0
       }
     },
@@ -4723,7 +5001,7 @@
       "case_id": "READ-016",
       "case_name": "external-site-config",
       "participant": "readabilities-py",
-      "status": "fail",
+      "status": "pass",
       "native_status": "success",
       "required": [
         {
@@ -4742,17 +5020,17 @@
       "forbidden": [
         {
           "fact": "FORBIDDEN-CUSTOM-SPONSOR",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "FORBIDDEN-CUSTOM-TOOLS",
-          "pass": false
+          "pass": true
         }
       ],
       "structure": [
         {
           "fact": "heading",
-          "pass": false
+          "pass": true
         },
         {
           "fact": "list",
@@ -4790,29 +5068,29 @@
         }
       ],
       "markdown_stats": {
-        "lines": 12,
-        "words": 55,
-        "headings": 0,
+        "lines": 10,
+        "words": 53,
+        "headings": 1,
         "links": 0,
         "images": 0,
         "code_fences": 0,
         "tables": 0,
-        "noise_hits": 1,
+        "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 2113,
-      "proof": "case=READ-016 failed_facts=[\"FORBIDDEN-CUSTOM-SPONSOR\" \"FORBIDDEN-CUSTOM-TOOLS\" \"heading\"] security=[] actual_preview=\"REQUIRED-CUSTOM-OPEN: A caller can load a declarative profile without rebuilding the Rust crate. REQUIRED-CUSTOM-BODY: Host matching is boundary aware and selectors are validated before extraction starts. * Choose the content root. * Remove\"",
+      "elapsed_ms": 1243,
+      "proof": "required=3 forbidden=2 structure=2 markdown=4 order=1 metadata=1 site=0 security=0",
       "native": {
         "participant": "readabilities-py",
         "status": "success",
-        "content_bytes": 460,
-        "content_sha256": "d346a311e79b6bbb514f00215f884460e572fd1a35ec249d270b003c1dec5924",
-        "content_preview": "REQUIRED-CUSTOM-OPEN: A caller can load a declarative profile without rebuilding the Rust crate. REQUIRED-CUSTOM-BODY: Host matching is boundary aware and selectors are validated before extraction starts. * Choose the content root. * Remove…",
+        "content_bytes": 395,
+        "content_sha256": "d8fed4ccf6da9ffd78b0f6ff1d075d0e5a4a9ad0cdeab57941abd08281782829",
+        "content_preview": "# Loading a Site Profile REQUIRED-CUSTOM-OPEN: A caller can load a declarative profile without rebuilding the Rust crate. REQUIRED-CUSTOM-BODY: Host matching is boundary aware and selectors are validated before extraction starts. - Choose t…",
         "content_format": "markdown",
         "metadata": {
           "title": "Loading a Site Profile"
         },
-        "elapsed_ms": 2113,
+        "elapsed_ms": 1243,
         "exit_code": 0
       }
     },
@@ -4892,6 +5170,15 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
         "lines": 10,
         "words": 53,
@@ -4903,7 +5190,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 106,
+      "elapsed_ms": 36,
       "proof": "required=3 forbidden=2 structure=2 markdown=4 order=1 metadata=1 site=1 security=0",
       "native": {
         "participant": "readabilities-rs",
@@ -4916,7 +5203,161 @@
         "metadata": {
           "title": "Loading a Site Profile"
         },
-        "elapsed_ms": 106,
+        "elapsed_ms": 36,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "READ-017",
+      "case_name": "link-index",
+      "participant": "defuddle",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
+      "markdown_stats": {
+        "lines": 3,
+        "words": 217,
+        "headings": 0,
+        "links": 4,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 620,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "defuddle",
+        "status": "success",
+        "content_bytes": 3598,
+        "content_sha256": "667fb811bd490c9c0a3630e1ddbfba42e5b09e0d2e165a5f197e32b24d3a2974",
+        "content_preview": "[new](newest) | [past](past) | [comments](comments) | [submit](submit) 1. Self-authored index item number one ( example.test ) 21 points by user1 2 hours ago | hide | 16 comments 2. Self-authored index item number two ( example.test ) 22 po…",
+        "content_format": "markdown",
+        "metadata": {
+          "language": "en",
+          "title": "Daily link index"
+        },
+        "elapsed_ms": 620,
+        "exit_code": 0
+      }
+    },
+    {
+      "case_id": "READ-017",
+      "case_name": "link-index",
+      "participant": "readabilities-py",
+      "status": "fail",
+      "native_status": "no_content",
+      "markdown_stats": {
+        "lines": 0,
+        "words": 0,
+        "headings": 0,
+        "links": 0,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 2972,
+      "proof": "expected status [success], actual \"no_content\"; stderr=\"2026-08-11 19:41:37,613 - WARNING - discarding data: https://example.test/index\"",
+      "native": {
+        "participant": "readabilities-py",
+        "status": "no_content",
+        "content_bytes": 0,
+        "content_format": "markdown",
+        "metadata": {
+          "title": "Daily link index"
+        },
+        "elapsed_ms": 2972,
+        "exit_code": 0,
+        "stderr": "2026-08-11 19:41:37,613 - WARNING - discarding data: https://example.test/index"
+      }
+    },
+    {
+      "case_id": "READ-017",
+      "case_name": "link-index",
+      "participant": "readabilities-rs",
+      "status": "pass",
+      "native_status": "success",
+      "markdown_fidelity": [
+        {
+          "fact": "native Markdown output",
+          "pass": true
+        },
+        {
+          "fact": "balanced fenced code blocks",
+          "pass": true
+        },
+        {
+          "fact": "image and following prose remain separated",
+          "pass": true
+        },
+        {
+          "fact": "no NUL bytes",
+          "pass": true
+        }
+      ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
+      "markdown_stats": {
+        "lines": 81,
+        "words": 207,
+        "headings": 0,
+        "links": 64,
+        "images": 0,
+        "code_fences": 0,
+        "tables": 0,
+        "noise_hits": 0,
+        "duplicate_lines": 0
+      },
+      "elapsed_ms": 66,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
+      "native": {
+        "participant": "readabilities-rs",
+        "status": "success",
+        "content_bytes": 3711,
+        "content_sha256": "b62d897a6183d0240d9c18946e496e6499aa0516952dbd39b4b4611ad48adeb2",
+        "content_preview": "[new](https://example.test/newest) | [past](https://example.test/past) | [comments](https://example.test/comments) | [submit](https://example.test/submit) 1. [](https://example.test/vote?id=1) [Self-authored index item number one](https://e…",
+        "content_format": "markdown",
+        "metadata": {
+          "language": "en",
+          "title": "Daily link index"
+        },
+        "elapsed_ms": 66,
         "exit_code": 0
       }
     }

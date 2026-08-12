@@ -19,3 +19,21 @@ func TestNativeResultSummaryDoesNotSerializeBody(t *testing.T) {
 		t.Fatalf("short preview changed: %q", result.ContentPreview)
 	}
 }
+
+func TestRustErrorStatusPreservesTypedNoContent(t *testing.T) {
+	if got := rustErrorStatus(`{"kind":"no_content","stage":"locate"}`); got != "no_content" {
+		t.Fatalf("status = %q, want no_content", got)
+	}
+	if got := rustErrorStatus(`{"kind":"invalid_input"}`); got != "failure" {
+		t.Fatalf("status = %q, want failure", got)
+	}
+}
+
+func TestDefuddleErrorStatusPreservesExplicitNoContent(t *testing.T) {
+	if got := defuddleErrorStatus(Defuddle, "Error: No content could be extracted from input"); got != "no_content" {
+		t.Fatalf("status = %q, want no_content", got)
+	}
+	if got := defuddleErrorStatus(Defuddle, "Error: ENOENT"); got != "failure" {
+		t.Fatalf("status = %q, want failure", got)
+	}
+}

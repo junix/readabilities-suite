@@ -31,10 +31,11 @@ check:
   ./readabilities-suite doctor
   ./readabilities-suite run --profile offline >/dev/null
 
-# Non-gating diagnostics against maintained common public sites.
+# Non-gating, same-snapshot Defuddle-Golden diagnostics against maintained public sites.
 live-common: build
   ./readabilities-suite run --profile live --timeout 90s \
-    --url https://example.com/ \
+    --participant defuddle \
+    --participant readabilities-rs \
     --url https://en.wikipedia.org/wiki/Readability \
     --url https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AF%BB%E6%80%A7 \
     --url https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article \

@@ -1,4 +1,4 @@
-"""Thin native driver for readabilities-py; it does not clean participant output."""
+"""Thin native driver for the selected readabilities-py Golden Oracle."""
 
 from __future__ import annotations
 
@@ -8,22 +8,24 @@ from pathlib import Path
 
 
 def main() -> int:
-    from readabilities.web_pages import html_to_markdown, readability_of
+    from readabilities.trafilaturas import extract_html
 
     if sys.argv[1:] == ["--doctor"]:
-        print(json.dumps({"ready": True, "surface": "readabilities.web_pages.readability_of"}))
+        print(json.dumps({"ready": True, "surface": "readabilities.trafilaturas.extract_html"}))
         return 0
     if len(sys.argv) < 2:
         print("usage: readabilities_py.py HTML [BASE_URL]", file=sys.stderr)
         return 2
-    result = readability_of(Path(sys.argv[1]).read_text(), return_plain_text=False)
-    html_content = result.get("content") or ""
-    content = html_to_markdown(html_content)
+    result = extract_html(
+        Path(sys.argv[1]).read_text(encoding="utf-8"),
+        base_url=sys.argv[2] if len(sys.argv) > 2 and sys.argv[2] else None,
+    )
+    content = result["content"]
     status = "success" if content.strip() else "no_content"
     metadata = {
-        "title": result.get("title") or "",
-        "author": result.get("byline") or "",
-        "published": result.get("date") or "",
+        "title": result["title"],
+        "author": result["author"],
+        "published": result["published"],
     }
     print(
         json.dumps(

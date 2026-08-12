@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-005",
+  "fixture_sha256": "16f010f8ff40ca7bbf8896612459cd58a0d7451fdb72ddbbb378e11361b95312",
+  "status": "success",
+  "content": "REQUIRED-NEWS-LEDE: Marine researchers opened a public observation pier on Tuesday after three years of construction.\n\nREQUIRED-NEWS-QUOTE: The director said the facility will help students collect long-term measurements without disrupting coastal habitats.\n\nREQUIRED-NEWS-CONTEXT: The project includes weather sensors, accessible walkways, and a small classroom used by local schools.",
+  "content_sha256": "085121b803ff264699aa33a04ef753a745b70ee82a621e7919680285696293c9",
+  "metadata": {
+    "author": "Jordan Reporter",
+    "site": "Jordan Reporter",
+    "title": "Harbor Opens New Research Pier"
+  }
+}

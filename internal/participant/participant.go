@@ -160,7 +160,7 @@ func Run(ctx context.Context, target Target, fixture, baseURL, rustSiteConfig st
 		Stderr:      bounded(stderr.String(), 600),
 	}
 	if err != nil {
-		result.Status = "failure"
+		result.Status = defuddleErrorStatus(target.ID, result.Stderr)
 		if exit, ok := err.(*exec.ExitError); ok {
 			result.ExitCode = exit.ExitCode()
 		} else {
@@ -203,7 +203,7 @@ func runRust(ctx context.Context, target Target, fixture, baseURL, siteConfig st
 		ContentFormat: "markdown",
 	}
 	if err != nil {
-		result.Status = "failure"
+		result.Status = rustErrorStatus(result.Stderr)
 		if exit, ok := err.(*exec.ExitError); ok {
 			result.ExitCode = exit.ExitCode()
 		} else {
@@ -245,6 +245,29 @@ func runRust(ctx context.Context, target Target, fixture, baseURL, siteConfig st
 	result.ExitCode = 0
 	result.summarizeContent()
 	return result
+}
+
+// rustErrorStatus preserves the public typed no-content condition instead of
+// flattening every nonzero Rust CLI result into a generic failure.  Other
+// Rust errors remain failures and retain their bounded stderr proof.
+func rustErrorStatus(stderr string) string {
+	var value struct {
+		Kind string `json:"kind"`
+	}
+	if json.Unmarshal([]byte(stderr), &value) == nil && value.Kind == "no_content" {
+		return "no_content"
+	}
+	return "failure"
+}
+
+// defuddleErrorStatus turns Defuddle's documented no-content CLI diagnostic
+// into the shared typed status. Other nonzero exits remain failures so that a
+// broken Oracle cannot be mistaken for a clean empty document.
+func defuddleErrorStatus(id, stderr string) string {
+	if id == Defuddle && strings.Contains(stderr, "No content could be extracted") {
+		return "no_content"
+	}
+	return "failure"
 }
 
 // summarizeContent records bounded evidence while keeping extracted page bodies

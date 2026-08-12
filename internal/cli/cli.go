@@ -26,6 +26,8 @@ const (
 	exitUnavailable = 3
 )
 
+const defuddleGoldenSource = "defuddle/0.19.2-markdown-v1"
+
 type BuildInfo struct{ Version, SourcePath string }
 
 type globals struct {
@@ -68,6 +70,8 @@ func Run(args []string, stdout, stderr io.Writer, build BuildInfo) int {
 		return runList(rest[1:], global, stdout, stderr)
 	case "run", "test":
 		return runCases(rest[1:], global, stdout, stderr)
+	case "record-golden":
+		return recordGolden(rest[1:], global, stdout, stderr)
 	default:
 		fmt.Fprintf(stderr, "unknown command %q\n", rest[0])
 		printHelp(stderr)
@@ -220,6 +224,9 @@ func runCases(args []string, g globals, stdout, stderr io.Writer) int {
 		if err == nil {
 			cases, err = corpus.Filter(cases, selectors, tags)
 		}
+		if err == nil {
+			err = corpus.RequireGoldens(cases)
+		}
 	case "live":
 		if len(urls) == 0 {
 			fmt.Fprintln(stderr, "live profile requires at least one --url")
@@ -266,6 +273,67 @@ func runCases(args []string, g globals, stdout, stderr io.Writer) int {
 	}
 	if *profile == "live" && report.Failed > 0 {
 		return exitFailed
+	}
+	return exitOK
+}
+
+func recordGolden(args []string, g globals, stdout, stderr io.Writer) int {
+	fs := flag.NewFlagSet("readabilities-suite record-golden", flag.ContinueOnError)
+	fs.SetOutput(stderr)
+	force := fs.Bool("force", false, "overwrite existing reviewed Golden files")
+	timeout := fs.Duration("timeout", 60*time.Second, "timeout per Defuddle extraction")
+	var selectors, tags listFlag
+	fs.Var(&selectors, "case", "case id/name; repeatable")
+	fs.Var(&tags, "tag", "tag; repeatable")
+	if err := fs.Parse(args); err != nil {
+		return exitUsage
+	}
+	cases, err := corpus.LoadForGoldenRecording(g.root)
+	if err != nil {
+		fmt.Fprintln(stderr, err)
+		return exitUsage
+	}
+	cases, err = corpus.Filter(cases, selectors, tags)
+	if err != nil {
+		fmt.Fprintln(stderr, err)
+		return exitUsage
+	}
+	var defuddle participant.Target
+	for _, target := range targets(g) {
+		if target.ID == participant.Defuddle {
+			defuddle = target
+			break
+		}
+	}
+	if !defuddle.Available {
+		fmt.Fprintf(stderr, "Defuddle Golden Oracle unavailable: %s\n", defuddle.Reason)
+		return exitUnavailable
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), *timeout)
+	err = participant.Probe(ctx, defuddle)
+	cancel()
+	if err != nil {
+		fmt.Fprintln(stderr, err)
+		return exitUnavailable
+	}
+	for _, c := range cases {
+		ctx, cancel := context.WithTimeout(context.Background(), *timeout)
+		native := participant.Run(ctx, defuddle, c.Fixture, c.BaseURL, "")
+		cancel()
+		if native.Status == "failure" {
+			fmt.Fprintf(stderr, "%s: Defuddle Golden extraction failed: %s\n", c.ID, native.Stderr)
+			return exitFailed
+		}
+		golden, err := corpus.NewGolden(defuddleGoldenSource, c, native.Status, native.Content, native.Metadata)
+		if err != nil {
+			fmt.Fprintln(stderr, err)
+			return exitUsage
+		}
+		if err := corpus.WriteGolden(corpus.GoldenPath(g.root, c.ID), golden, *force); err != nil {
+			fmt.Fprintln(stderr, err)
+			return exitUsage
+		}
+		fmt.Fprintf(stdout, "recorded %s status=%s sha256=%s\n", c.ID, native.Status, golden.ContentSHA256[:12])
 	}
 	return exitOK
 }
@@ -325,7 +393,7 @@ func captureLive(urls []string, outputDir string, timeout time.Duration) ([]corp
 			cleanup()
 			return nil, nil, err
 		}
-		cases = append(cases, corpus.Case{ID: fmt.Sprintf("LIVE-%03d", i+1), Name: rawURL, Kind: "live", Fixture: path, BaseURL: rawURL, ExpectedStatuses: []string{"success"}, Tags: []string{"live"}})
+		cases = append(cases, corpus.Case{ID: fmt.Sprintf("LIVE-%03d", i+1), Name: rawURL, Kind: "live", Fixture: path, BaseURL: rawURL, ExpectedStatuses: []string{"success", "no_content"}, Tags: []string{"live"}})
 	}
 	return cases, cleanup, nil
 }
@@ -357,6 +425,7 @@ Commands:
   doctor [--json]                resolve and probe all three participants
   list [--json] [--case ID]      list stable READ-NNN cases
   run [--profile offline|live]   compare normalized facts and security
+  record-golden [--force]        freeze the selected Defuddle Oracle for offline cases
   version [--json]               print suite version
 
 Offline is the release gate. Live captures one common snapshot per --url and is discovery-only.`)

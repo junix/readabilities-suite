@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-007",
+  "fixture_sha256": "be8542718bcacd295fe8a98c7e17202e3b7c8a22bd97c3215bf5f91ed6ad5d96",
+  "status": "success",
+  "content": "REQUIRED-QUESTION: I need to remove a documentation sidebar without flattening the table in the answer.\n\n## Accepted answer\n\nREQUIRED-ANSWER: Select the main content before serialization, then whitelist semantic table elements in the final sanitizer.\n\n```\nbuilder.add_tags([\"table\", \"thead\", \"tbody\", \"tr\", \"th\", \"td\"]);\n```\n\nREQUIRED-REPLY: Also test colspan and rowspan attributes.",
+  "content_sha256": "893c60ac617347bb7fbb831357b35917010812205116edc99b064f33d6259256",
+  "metadata": {
+    "title": "How do I preserve table structure?"
+  }
+}

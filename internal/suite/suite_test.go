@@ -72,3 +72,46 @@ func TestSecurityCheckDoesNotConfuseProseWithAURI(t *testing.T) {
 		t.Fatalf("dangerous URI was not detected: %v", got)
 	}
 }
+
+func TestGoldenOracleFindsMissingReferenceContent(t *testing.T) {
+	caseDef := corpus.Case{
+		ID:               "READ-TEST",
+		ExpectedStatuses: []string{"success"},
+		Golden: &corpus.Golden{
+			Source:  "defuddle/0.19.2-markdown-v1",
+			Status:  "success",
+			Content: "A retained reference paragraph has several important words.",
+		},
+	}
+	native := participant.NativeResult{
+		Participant:   participant.Rust,
+		Status:        "success",
+		Content:       "A retained paragraph.",
+		ContentFormat: "markdown",
+	}
+	result := evaluate(caseDef, native)
+	if result.Status != "fail" || result.Golden == nil || result.Golden.Pass {
+		t.Fatalf("Golden omission must fail with evidence: %#v", result)
+	}
+	if result.Golden.TokenCoverage >= minimumGoldenTokenCoverage || len(result.Golden.MissingTokens) == 0 {
+		t.Fatalf("missing Golden evidence: %#v", result.Golden)
+	}
+}
+
+func TestLiveOracleComparisonUsesTheSameDefuddleSnapshot(t *testing.T) {
+	cases := []corpus.Case{{ID: "LIVE-001", ExpectedStatuses: []string{"success", "no_content"}}}
+	results := []CaseResult{
+		{
+			CaseID: "LIVE-001", Participant: participant.Defuddle, Status: "pass",
+			Native: participant.NativeResult{Participant: participant.Defuddle, Status: "no_content"},
+		},
+		{
+			CaseID: "LIVE-001", Participant: participant.Rust, Status: "pass",
+			Native: participant.NativeResult{Participant: participant.Rust, Status: "success", Content: "link index"},
+		},
+	}
+	attachLiveGolden(cases, results)
+	if results[1].Status != "fail" || results[1].Golden == nil || results[1].Golden.Pass {
+		t.Fatalf("live Defuddle no_content must reject Rust false positive: %#v", results[1])
+	}
+}

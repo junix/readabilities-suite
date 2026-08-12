@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-009",
+  "fixture_sha256": "8b8ea04a81e71dbd002c52d32ccb3d297f7c5f4b4a21e1d17f2e244ba267fa3d",
+  "status": "success",
+  "content": "REQUIRED-IMAGE: Each image needs useful alternative text and an absolute URL in exported content.\n\n![A marked field notebook](/images/cover.jpg)\n\nREQUIRED-CAPTION: Measurements recorded at sunrise.\n\nREQUIRED-IMAGE-END: Duplicate cover images should not be repeated merely because metadata references the same asset.",
+  "content_sha256": "c3a2b817302bf916b25a5a27d6f03dd5f263ab3651b7d666758cbe70850cff31",
+  "metadata": {
+    "title": "Field Notes in Pictures"
+  }
+}

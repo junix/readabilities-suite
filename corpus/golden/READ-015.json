@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-015",
+  "fixture_sha256": "e61a7d8b776f8b4296558d083b1917caef5aaaa2b58c76874fb5b2d4a4a15bd8",
+  "status": "success",
+  "content": "REQUIRED-GENERIC-OPEN: Most domains will never receive a dedicated site profile, so the default path must remain useful.\n\nREQUIRED-GENERIC-BODY: Semantic containers, text density, link density, and conservative retry behavior provide a strong portable baseline.\n\n\u003e A profile can improve a known layout, but it must not become a prerequisite for readable output.\n\nREQUIRED-GENERIC-END: The E2E suite guards both configured sites and this unconfigured path.",
+  "content_sha256": "c402b2664ada68f4581206e8cd58654aa6b422752194ef88ad2e44706e403beb",
+  "metadata": {
+    "title": "Generic Extraction Still Matters"
+  }
+}

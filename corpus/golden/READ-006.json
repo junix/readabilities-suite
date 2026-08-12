@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-006",
+  "fixture_sha256": "b1fd51e62df94a1b761ca6c650792686480bfef78731e79e67b2542970e17ff8",
+  "status": "success",
+  "content": "REQUIRED-BLOG-ONE: Start by listing the operations that create impact noise, airborne noise, or vibration.\n\n- REQUIRED-BLOG-LIST: Separate machines from shared walls.\n- Seal gaps around doors before adding expensive panels.\n- Measure again after every change.\n\n\u003e REQUIRED-BLOG-QUOTE: Quiet design is mostly careful control of paths.\n\nREQUIRED-BLOG-END: The result should be easier to work in, not merely impressive on a specification sheet.",
+  "content_sha256": "b8c06c7ea645798bc722046d07299efe93a3473210c57e3d0f44b15826e6c0b1",
+  "metadata": {
+    "title": "Building a Quiet Workshop"
+  }
+}

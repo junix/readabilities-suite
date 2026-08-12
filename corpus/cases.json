@@ -1,5 +1,5 @@
 {
-  "version": "readabilities-suite.corpus.v2",
+  "version": "readabilities-suite.corpus.v3",
   "cases": [
     {
       "id": "READ-001", "name": "noisy-rich-article", "kind": "offline",
@@ -152,6 +152,12 @@
       "expected_rust_site_config": "custom-example",
       "rust_site_config_file": "READ-016-custom.json",
       "tags": ["site-config", "external-config", "article"]
+    },
+    {
+      "id": "READ-017", "name": "link-index", "kind": "offline",
+      "fixture": "READ-017-link-index.html", "base_url": "https://example.test/index",
+      "expected_statuses": ["success"],
+      "tags": ["oracle", "validation", "link-index"]
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-012",
+  "fixture_sha256": "1e4f8b753ecfb52a1edc008cb2158a8979b0ecb1e28f0fef4bb8234f730b8da2",
+  "status": "success",
+  "content": "REQUIRED-MEDIUM-OPEN: A site profile should narrow known layout noise without replacing the general readability engine.\n\nREQUIRED-MEDIUM-BODY: The portable default still identifies paragraphs, headings, lists, links, and code when no profile matches.\n\n- Keep site rules declarative.\n- Keep final sanitization unconditional.\n[FORBIDDEN-MEDIUM-PROMO: Upgrade to read every story](https://medium.com/plans)\n\nREQUIRED-MEDIUM-END: Profiles are targeted refinements, not a license to weaken generic behavior.",
+  "content_sha256": "376c968773d10bccedf480c7bc5e64626977e1c4acebbe0685d13ac5c740ba91",
+  "metadata": {
+    "author": "Morgan Writer",
+    "site": "Medium",
+    "title": "A Quiet Extraction Layer"
+  }
+}

@@ -17,7 +17,8 @@ import (
 	"github.com/junix/readabilities-suite/internal/participant"
 )
 
-const SchemaVersion = 2
+const SchemaVersion = 3
+const minimumGoldenTokenCoverage = 0.90
 
 type Options struct {
 	Jobs         int
@@ -45,10 +46,24 @@ type CaseResult struct {
 	Metadata     []FactResult             `json:"metadata,omitempty"`
 	SiteConfig   []FactResult             `json:"site_config,omitempty"`
 	Security     []string                 `json:"security_violations,omitempty"`
+	Golden       *GoldenComparison        `json:"golden_oracle,omitempty"`
 	Stats        MarkdownStats            `json:"markdown_stats"`
 	ElapsedMS    int64                    `json:"elapsed_ms"`
 	Proof        string                   `json:"proof,omitempty"`
 	Native       participant.NativeResult `json:"native"`
+}
+
+// GoldenComparison keeps the selected Oracle comparison explainable without
+// placing full reference bodies into routine reports.
+type GoldenComparison struct {
+	Source               string   `json:"source"`
+	ExpectedStatus       string   `json:"expected_status"`
+	ActualStatus         string   `json:"actual_status"`
+	StatusPass           bool     `json:"status_pass"`
+	TokenCoverage        float64  `json:"token_coverage,omitempty"`
+	MinimumTokenCoverage float64  `json:"minimum_token_coverage,omitempty"`
+	MissingTokens        []string `json:"missing_tokens,omitempty"`
+	Pass                 bool     `json:"pass"`
 }
 
 type MarkdownStats struct {
@@ -85,6 +100,8 @@ type Metrics struct {
 	MarkdownWords      int    `json:"markdown_words"`
 	NoiseHits          int    `json:"noise_hits"`
 	DuplicateLines     int    `json:"duplicate_lines"`
+	GoldenPass         int    `json:"golden_pass"`
+	GoldenTotal        int    `json:"golden_total"`
 }
 
 type BestEvidence struct {
@@ -96,6 +113,7 @@ type BestEvidence struct {
 	RustMarkdownAtLeastBest  bool     `json:"rust_markdown_at_least_best"`
 	RustOrderAtLeastBest     bool     `json:"rust_order_at_least_best"`
 	RustMetadataAtLeastBest  bool     `json:"rust_metadata_at_least_best"`
+	RustGoldenConformant     bool     `json:"rust_golden_conformant"`
 	RecallLeaders            []string `json:"recall_leaders"`
 	NoiseLeaders             []string `json:"noise_leaders"`
 	StructureLeaders         []string `json:"structure_leaders"`
@@ -168,6 +186,9 @@ func Run(ctx context.Context, targets []participant.Target, cases []corpus.Case,
 	}
 	close(jobs)
 	wg.Wait()
+	if opts.Profile == "live" {
+		attachLiveGolden(cases, results)
+	}
 
 	report := Report{
 		SchemaVersion: SchemaVersion,
@@ -193,6 +214,42 @@ func Run(ctx context.Context, targets []participant.Target, cases []corpus.Case,
 	return report, nil
 }
 
+// attachLiveGolden compares Rust with the selected Defuddle Oracle on the exact
+// snapshot captured for this run. Live observations are diagnostic only and
+// are never persisted or used for release eligibility.
+func attachLiveGolden(cases []corpus.Case, results []CaseResult) {
+	byCase := make(map[string]corpus.Case, len(cases))
+	for _, c := range cases {
+		byCase[c.ID] = c
+	}
+	defuddle := make(map[string]participant.NativeResult, len(cases))
+	for _, result := range results {
+		if result.Participant == participant.Defuddle {
+			defuddle[result.CaseID] = result.Native
+		}
+	}
+	for i := range results {
+		result := &results[i]
+		if result.Participant != participant.Rust {
+			continue
+		}
+		oracle, ok := defuddle[result.CaseID]
+		if !ok {
+			continue
+		}
+		c, ok := byCase[result.CaseID]
+		if !ok {
+			continue
+		}
+		c.Golden = &corpus.Golden{
+			Source:  "defuddle/0.19.2-markdown-v1 (same-snapshot live)",
+			Status:  oracle.Status,
+			Content: oracle.Content,
+		}
+		applyGolden(c, result.Native, result)
+	}
+}
+
 func evaluate(c corpus.Case, native participant.NativeResult) CaseResult {
 	result := CaseResult{
 		CaseID: c.ID, CaseName: c.Name, Participant: native.Participant,
@@ -202,10 +259,12 @@ func evaluate(c corpus.Case, native participant.NativeResult) CaseResult {
 	if !contains(c.ExpectedStatuses, native.Status) {
 		result.Status = "fail"
 		result.Proof = fmt.Sprintf("expected status %v, actual %q; stderr=%q", c.ExpectedStatuses, native.Status, native.Stderr)
+		applyGolden(c, native, &result)
 		return result
 	}
 	if native.Status != "success" {
 		result.Proof = "validation/no-content path remained distinguishable"
+		applyGolden(c, native, &result)
 		return result
 	}
 	formatPass := native.ContentFormat == "markdown"
@@ -282,7 +341,7 @@ func evaluate(c corpus.Case, native participant.NativeResult) CaseResult {
 		}
 	}
 	result.Security = securityViolations(native.Content)
-	if len(result.Security) > 0 {
+	if native.Participant == participant.Rust && len(result.Security) > 0 {
 		result.Status = "fail"
 	}
 	if result.Status == "fail" {
@@ -290,7 +349,115 @@ func evaluate(c corpus.Case, native participant.NativeResult) CaseResult {
 	} else {
 		result.Proof = fmt.Sprintf("required=%d forbidden=%d structure=%d markdown=%d order=%d metadata=%d site=%d security=0", len(result.Required), len(result.Forbidden), len(result.Structure), len(result.Markdown), len(result.Order), len(result.Metadata), len(result.SiteConfig))
 	}
+	applyGolden(c, native, &result)
 	return result
+}
+
+func applyGolden(c corpus.Case, native participant.NativeResult, result *CaseResult) {
+	if c.Golden == nil || (native.Participant != participant.Defuddle && native.Participant != participant.Rust) {
+		return
+	}
+	comparison := compareGolden(c, native)
+	result.Golden = &comparison
+	if comparison.Pass {
+		return
+	}
+	result.Status = "fail"
+	proof := fmt.Sprintf(
+		"Defuddle Golden %s expected_status=%s actual_status=%s coverage=%.1f%% min=%.1f%% missing=%v",
+		comparison.Source,
+		comparison.ExpectedStatus,
+		comparison.ActualStatus,
+		comparison.TokenCoverage*100,
+		comparison.MinimumTokenCoverage*100,
+		comparison.MissingTokens,
+	)
+	if result.Proof == "" {
+		result.Proof = proof
+	} else {
+		result.Proof += "; " + proof
+	}
+}
+
+func compareGolden(c corpus.Case, native participant.NativeResult) GoldenComparison {
+	golden := c.Golden
+	comparison := GoldenComparison{
+		Source:         golden.Source,
+		ExpectedStatus: golden.Status,
+		ActualStatus:   native.Status,
+		StatusPass:     golden.Status == native.Status,
+		Pass:           golden.Status == native.Status,
+	}
+	if golden.Status != "success" {
+		return comparison
+	}
+	comparison.MinimumTokenCoverage = minimumGoldenTokenCoverage
+	if native.Status != "success" {
+		return comparison
+	}
+	comparison.TokenCoverage, comparison.MissingTokens = tokenCoverage(
+		goldenComparableText(golden.Content, c.ForbiddenText),
+		native.Content,
+	)
+	comparison.Pass = comparison.StatusPass && comparison.TokenCoverage >= minimumGoldenTokenCoverage
+	return comparison
+}
+
+func goldenComparableText(content string, forbidden []string) string {
+	if len(forbidden) == 0 {
+		return content
+	}
+	var kept []string
+	for _, line := range strings.Split(content, "\n") {
+		reject := false
+		for _, marker := range forbidden {
+			if strings.Contains(line, marker) {
+				reject = true
+				break
+			}
+		}
+		if !reject {
+			kept = append(kept, line)
+		}
+	}
+	return strings.Join(kept, "\n")
+}
+
+var goldenTokenPattern = regexp.MustCompile(`[\p{Han}]|[\p{L}\p{N}]+`)
+
+func tokenCoverage(golden, actual string) (float64, []string) {
+	expected := tokenCounts(golden)
+	if len(expected) == 0 {
+		return 1, nil
+	}
+	got := tokenCounts(actual)
+	total, shared := 0, 0
+	var missing []string
+	for token, count := range expected {
+		total += count
+		matched := got[token]
+		if matched > count {
+			matched = count
+		}
+		shared += matched
+		if count > matched && len(missing) < 12 {
+			entry := token
+			if count-matched > 1 {
+				entry = fmt.Sprintf("%s×%d", token, count-matched)
+			}
+			missing = append(missing, entry)
+		}
+	}
+	sort.Strings(missing)
+	return float64(shared) / float64(total), missing
+}
+
+func tokenCounts(content string) map[string]int {
+	counts := map[string]int{}
+	for _, token := range goldenTokenPattern.FindAllString(strings.ToLower(participant.NormalizedText(content)), -1) {
+		counts[token]++
+	}
+	return counts
 }
 
 func hasStructure(content, name string) bool {
@@ -453,6 +620,12 @@ func aggregate(targets []participant.Target, results []CaseResult) []Metrics {
 		m.MarkdownWords += result.Stats.Words
 		m.NoiseHits += result.Stats.NoiseHits
 		m.DuplicateLines += result.Stats.DuplicateLines
+		if result.Golden != nil {
+			m.GoldenTotal++
+			if result.Golden.Pass {
+				m.GoldenPass++
+			}
+		}
 	}
 	out := make([]Metrics, 0, len(targets))
 	for _, target := range targets {
@@ -477,7 +650,8 @@ func bestEvidence(metrics []Metrics) BestEvidence {
 	evidence.RustMarkdownAtLeastBest = rustOK && atLeastBest(metrics, rust.MarkdownFound, rust.MarkdownTotal, func(m Metrics) (int, int) { return m.MarkdownFound, m.MarkdownTotal })
 	evidence.RustOrderAtLeastBest = rustOK && atLeastBest(metrics, rust.OrderFound, rust.OrderTotal, func(m Metrics) (int, int) { return m.OrderFound, m.OrderTotal })
 	evidence.RustMetadataAtLeastBest = rustOK && atLeastBest(metrics, rust.MetadataFound, rust.MetadataTotal, func(m Metrics) (int, int) { return m.MetadataFound, m.MetadataTotal })
-	evidence.Eligible = evidence.RustSecurityZero && evidence.RustRecallAtLeastBest && evidence.RustNoiseAtLeastBest && evidence.RustStructureAtLeastBest && evidence.RustMarkdownAtLeastBest && evidence.RustOrderAtLeastBest && evidence.RustMetadataAtLeastBest && rust.Fail == 0
+	evidence.RustGoldenConformant = rustOK && rust.GoldenTotal > 0 && rust.GoldenPass == rust.GoldenTotal
+	evidence.Eligible = evidence.RustSecurityZero && evidence.RustRecallAtLeastBest && evidence.RustNoiseAtLeastBest && evidence.RustStructureAtLeastBest && evidence.RustMarkdownAtLeastBest && evidence.RustOrderAtLeastBest && evidence.RustMetadataAtLeastBest && evidence.RustGoldenConformant && rust.Fail == 0
 	evidence.RecallLeaders = leaders(metrics, func(m Metrics) (int, int) { return m.RequiredFound, m.RequiredTotal })
 	evidence.NoiseLeaders = leaders(metrics, func(m Metrics) (int, int) { return m.ForbiddenRejected, m.ForbiddenTotal })
 	evidence.StructureLeaders = leaders(metrics, func(m Metrics) (int, int) { return m.StructureFound, m.StructureTotal })

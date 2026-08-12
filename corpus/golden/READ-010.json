@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-010",
+  "fixture_sha256": "0be236ae377748c807ad74bf0f746a4b736fad8ef889e76feeacc19457b70d39",
+  "status": "success",
+  "content": "REQUIRED-SECURITY: Untrusted HTML must cross a final sanitizer after every extraction backend.\n\nREQUIRED-SECURITY-STRUCTURE: Normal paragraph text remains visible.\n\nunsafe data link ![safe image](https://example.test/safe.png)\u003ciframe src=\"https://attacker.test/\"\u003e\u003c/iframe\u003e",
+  "content_sha256": "312ad31aac25bfb0b034c6b81269ef0f5cbb3b933c0c542af36737268cf26507",
+  "metadata": {
+    "title": "Safe Rendering"
+  }
+}

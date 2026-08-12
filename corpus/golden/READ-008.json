@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-008",
+  "fixture_sha256": "6318ed385849fa65863a266a20cb5fb4ab7ec5c23e0ba00a2da0c7ba8351e006",
+  "status": "success",
+  "content": "REQUIRED-MATH: The square of a sum can be expanded without changing its value.\n\n$$\na^{2} + 2 a b + b^{2}\n$$\n\nREQUIRED-MATH-CONTEXT: This representation should survive cleaning even when the page contains unrelated widgets.\n\n1. REQUIRED-MATH-FOOTNOTE: Variables denote real numbers.",
+  "content_sha256": "aa15813ac42fcc318ceea71dfeffde4095c15106e6533dd35e4a3d6b55dde191",
+  "metadata": {
+    "title": "A Small Identity"
+  }
+}

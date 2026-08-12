@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-013",
+  "fixture_sha256": "5aa04c90d3fea60718458a75b1f2c38bfdbbced992eda8428626afbc6b84249d",
+  "status": "success",
+  "content": "REQUIRED-WIKI-LEDE: Readable content extraction identifies the primary document while excluding interface chrome.\n\n## History\n\nREQUIRED-WIKI-HISTORY: Early systems combined semantic containers with text and link density.\n\n- Generic extraction handles unknown pages.\n- Site profiles refine known layouts.\nFORBIDDEN-WIKI-NAVBOX: related navigation templates\n\nREQUIRED-WIKI-END: A frozen oracle should preserve facts and structure without copying a live page.",
+  "content_sha256": "3c8d97d14527fbb7381807e7d6bb22b63bbaa4929d7bf61b94fcea9d0b1947cc",
+  "metadata": {
+    "site": "Wikipedia",
+    "title": "Readable content"
+  }
+}

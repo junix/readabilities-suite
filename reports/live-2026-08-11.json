@@ -1,6 +1,6 @@
 {
-  "schema_version": 2,
-  "generated_at": "2026-08-11T22:03:53Z",
+  "schema_version": 3,
+  "generated_at": "2026-08-12T02:41:53Z",
   "profile": "live",
   "targets": [
     {
@@ -12,75 +12,43 @@
       "available": true
     },
     {
-      "id": "readabilities-py",
-      "command": "/Users/junix/.local/bin/uv",
-      "prefix": [
-        "run",
-        "python",
-        "/Users/junix/projects/document-tools/readabilities-suite/drivers/readabilities_py.py"
-      ],
-      "work_dir": "/Users/junix/projects/document-tools/readabilities-py",
-      "available": true
-    },
-    {
       "id": "readabilities-rs",
-      "command": "/Users/junix/projects/document-tools/readabilities-rs/target/debug/readabilities-rs",
+      "command": "/Users/junix/projects/readabilities/readabilities-rs/target/debug/readabilities-rs",
       "available": true
     }
   ],
-  "total": 24,
-  "passed": 22,
-  "failed": 2,
+  "total": 14,
+  "passed": 14,
+  "failed": 0,
   "metrics": [
     {
       "participant": "defuddle",
-      "pass": 6,
-      "fail": 2,
+      "pass": 7,
+      "fail": 0,
       "required_found": 0,
       "required_total": 0,
       "forbidden_rejected": 0,
       "forbidden_total": 0,
       "structure_found": 0,
       "structure_total": 0,
-      "markdown_found": 32,
-      "markdown_total": 32,
+      "markdown_found": 28,
+      "markdown_total": 28,
       "order_found": 0,
       "order_total": 0,
       "metadata_found": 0,
       "metadata_total": 0,
       "security_violations": 2,
-      "elapsed_ms": 4996,
-      "markdown_bytes": 115853,
-      "markdown_words": 12431,
-      "noise_hits": 3,
-      "duplicate_lines": 3
-    },
-    {
-      "participant": "readabilities-py",
-      "pass": 8,
-      "fail": 0,
-      "required_found": 0,
-      "required_total": 0,
-      "forbidden_rejected": 0,
-      "forbidden_total": 0,
-      "structure_found": 0,
-      "structure_total": 0,
-      "markdown_found": 32,
-      "markdown_total": 32,
-      "order_found": 0,
-      "order_total": 0,
-      "metadata_found": 0,
-      "metadata_total": 0,
-      "security_violations": 0,
-      "elapsed_ms": 20384,
-      "markdown_bytes": 121880,
-      "markdown_words": 12983,
-      "noise_hits": 3,
-      "duplicate_lines": 3
+      "elapsed_ms": 6117,
+      "markdown_bytes": 115648,
+      "markdown_words": 12399,
+      "noise_hits": 0,
+      "duplicate_lines": 3,
+      "golden_pass": 0,
+      "golden_total": 0
     },
     {
       "participant": "readabilities-rs",
-      "pass": 8,
+      "pass": 7,
       "fail": 0,
       "required_found": 0,
       "required_total": 0,
@@ -88,18 +56,20 @@
       "forbidden_total": 0,
       "structure_found": 0,
       "structure_total": 0,
-      "markdown_found": 32,
-      "markdown_total": 32,
+      "markdown_found": 28,
+      "markdown_total": 28,
       "order_found": 0,
       "order_total": 0,
       "metadata_found": 0,
       "metadata_total": 0,
       "security_violations": 0,
-      "elapsed_ms": 4266,
-      "markdown_bytes": 136464,
-      "markdown_words": 12507,
-      "noise_hits": 3,
-      "duplicate_lines": 3
+      "elapsed_ms": 1435,
+      "markdown_bytes": 150773,
+      "markdown_words": 12801,
+      "noise_hits": 0,
+      "duplicate_lines": 3,
+      "golden_pass": 7,
+      "golden_total": 7
     }
   ],
   "best_evidence": {
@@ -111,34 +81,29 @@
     "rust_markdown_at_least_best": true,
     "rust_order_at_least_best": true,
     "rust_metadata_at_least_best": true,
+    "rust_golden_conformant": true,
     "recall_leaders": [
       "defuddle",
-      "readabilities-py",
       "readabilities-rs"
     ],
     "noise_leaders": [
       "defuddle",
-      "readabilities-py",
       "readabilities-rs"
     ],
     "structure_leaders": [
       "defuddle",
-      "readabilities-py",
       "readabilities-rs"
     ],
     "metadata_leaders": [
       "defuddle",
-      "readabilities-py",
       "readabilities-rs"
     ],
     "markdown_leaders": [
       "defuddle",
-      "readabilities-py",
       "readabilities-rs"
     ],
     "order_leaders": [
       "defuddle",
-      "readabilities-py",
       "readabilities-rs"
     ],
     "note": "Live pages have no frozen fact oracle and cannot establish release eligibility."
@@ -146,161 +111,6 @@
   "cases": [
     {
       "case_id": "LIVE-001",
-      "case_name": "https://example.com/",
-      "participant": "defuddle",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 3,
-        "words": 17,
-        "headings": 0,
-        "links": 1,
-        "images": 0,
-        "code_fences": 0,
-        "tables": 0,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 382,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "defuddle",
-        "status": "success",
-        "content_bytes": 149,
-        "content_sha256": "a80242055d7489b4ce56b3193e7521cd92ef34fdc5b6aa666d7bef8cc29ccfd5",
-        "content_preview": "This domain is for use in documentation examples without needing permission. Avoid use in operations. [Learn more](https://iana.org/domains/example)",
-        "content_format": "markdown",
-        "metadata": {
-          "language": "en",
-          "title": "Example Domain"
-        },
-        "elapsed_ms": 382,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-001",
-      "case_name": "https://example.com/",
-      "participant": "readabilities-py",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 3,
-        "words": 17,
-        "headings": 0,
-        "links": 1,
-        "images": 0,
-        "code_fences": 0,
-        "tables": 0,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 2283,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 149,
-        "content_sha256": "a80242055d7489b4ce56b3193e7521cd92ef34fdc5b6aa666d7bef8cc29ccfd5",
-        "content_preview": "This domain is for use in documentation examples without needing permission. Avoid use in operations. [Learn more](https://iana.org/domains/example)",
-        "content_format": "markdown",
-        "metadata": {
-          "title": "Example Domain"
-        },
-        "elapsed_ms": 2283,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-001",
-      "case_name": "https://example.com/",
-      "participant": "readabilities-rs",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 5,
-        "words": 20,
-        "headings": 1,
-        "links": 1,
-        "images": 0,
-        "code_fences": 0,
-        "tables": 0,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 95,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "readabilities-rs",
-        "status": "success",
-        "content_bytes": 167,
-        "content_sha256": "5945db6fd8137aa377638814ca9bb1ac0a663fd90a97f11f86c3f5c09cfb40e3",
-        "content_preview": "# Example Domain This domain is for use in documentation examples without needing permission. Avoid use in operations. [Learn more](https://iana.org/domains/example)",
-        "content_format": "markdown",
-        "metadata": {
-          "language": "en",
-          "title": "Example Domain"
-        },
-        "elapsed_ms": 95,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-002",
       "case_name": "https://en.wikipedia.org/wiki/Readability",
       "participant": "defuddle",
       "status": "pass",
@@ -334,7 +144,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 1053,
+      "elapsed_ms": 1368,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "defuddle",
@@ -350,64 +160,12 @@
           "site": "Wikimedia Foundation, Inc.",
           "title": "Readability - Wikipedia"
         },
-        "elapsed_ms": 1053,
+        "elapsed_ms": 1368,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-002",
-      "case_name": "https://en.wikipedia.org/wiki/Readability",
-      "participant": "readabilities-py",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 469,
-        "words": 8592,
-        "headings": 11,
-        "links": 330,
-        "images": 1,
-        "code_fences": 0,
-        "tables": 4,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 2753,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 73818,
-        "content_sha256": "ff5018cf2936cc0e48959fb094ad70e94d75f2f7dddb296dcb94853d6d410a85",
-        "content_preview": "\"Reading difficulty\" redirects here; not to be confused with [Reading disability](https://en.wikipedia.org/wiki/Reading_disability \"Reading disability\"). **Readability** is the ease with which a [reader](https://en.wikipedia.org/wiki/Readin…",
-        "content_format": "markdown",
-        "metadata": {
-          "author": "Contributors to Wikimedia projects",
-          "title": "Readability"
-        },
-        "elapsed_ms": 2753,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-002",
+      "case_id": "LIVE-001",
       "case_name": "https://en.wikipedia.org/wiki/Readability",
       "participant": "readabilities-rs",
       "status": "pass",
@@ -430,42 +188,61 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1 (same-snapshot live)",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 0.99580648460673,
+        "minimum_token_coverage": 0.9,
+        "missing_tokens": [
+          "5×2",
+          "7",
+          "bar×2",
+          "cdot×3",
+          "displaystyle×3",
+          "frac×2",
+          "grade",
+          "i×9",
+          "max",
+          "n×6",
+          "p×7",
+          "sum×4"
+        ],
+        "pass": true
+      },
       "markdown_stats": {
-        "lines": 644,
-        "words": 8362,
-        "headings": 24,
-        "links": 308,
-        "images": 0,
+        "lines": 581,
+        "words": 8632,
+        "headings": 25,
+        "links": 330,
+        "images": 2,
         "code_fences": 0,
         "tables": 3,
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 1398,
+      "elapsed_ms": 618,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
         "status": "success",
-        "content_bytes": 74189,
-        "content_sha256": "69505d48f4cc98409a34a1dc1d97edce7f3cb5d8ee367b952bd2e7ddba11bf5b",
-        "content_preview": "**Readability** is the ease with which a [reader](https://en.wikipedia.org/wiki/Reading_\\(process\\) \"Reading (process)\") can [understand](https://en.wikipedia.org/wiki/Understand \"Understand\") a [written text](https://en.wikipedia.org/wiki/…",
+        "content_bytes": 86261,
+        "content_sha256": "b1bf159f1c5745233b3c2c80945f96a0d439d8055c613972ddcaf606db4c87ec",
+        "content_preview": "\"Reading difficulty\" redirects here; not to be confused with [Reading disability](https://en.wikipedia.org/wiki/Reading_disability \"Reading disability\"). For the website, see [Readability (service)](https://en.wikipedia.org/wiki/Readability…",
         "content_format": "markdown",
         "site_config": "wikipedia",
         "metadata": {
-          "author": "Contributors to Wikimedia projects",
           "canonical_url": "https://en.wikipedia.org/wiki/Readability",
           "language": "en",
-          "modified": "2026-07-20T07:26:47Z",
-          "published": "2003-11-02T19:34:16Z",
-          "site": "Wikimedia Foundation, Inc.",
-          "title": "Readability"
+          "title": "Readability - Wikipedia"
         },
-        "elapsed_ms": 1398,
+        "elapsed_ms": 618,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-003",
+      "case_id": "LIVE-002",
       "case_name": "https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AF%BB%E6%80%A7",
       "participant": "defuddle",
       "status": "pass",
@@ -499,7 +276,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 511,
+      "elapsed_ms": 756,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "defuddle",
@@ -515,64 +292,12 @@
           "site": "Wikimedia Foundation, Inc.",
           "title": "可读性 - 维基百科，自由的百科全书"
         },
-        "elapsed_ms": 511,
+        "elapsed_ms": 756,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-003",
-      "case_name": "https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AF%BB%E6%80%A7",
-      "participant": "readabilities-py",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 25,
-        "words": 146,
-        "headings": 0,
-        "links": 21,
-        "images": 1,
-        "code_fences": 0,
-        "tables": 0,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 2123,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 5699,
-        "content_sha256": "f1e40bb47ac2d13fed3b10359719c7b64b066ae8ca550886b9b322dd47626429",
-        "content_preview": "[![](//upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Disambig_gray.svg/40px-Disambig_gray.svg.png?utm_source=zh.wikipedia.org\u0026utm_campaign=parser\u0026utm_content=thumbnail)](/wiki/Wikipedia:%E6%B6%88%E6%AD%A7%E4%B9%89 \"Wikipedia:消歧义\")此條目介紹的…",
-        "content_format": "markdown",
-        "metadata": {
-          "author": "维基媒体项目贡献者",
-          "title": "可读性"
-        },
-        "elapsed_ms": 2123,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-003",
+      "case_id": "LIVE-002",
       "case_name": "https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AF%BB%E6%80%A7",
       "participant": "readabilities-rs",
       "status": "pass",
@@ -595,45 +320,53 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1 (same-snapshot live)",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 0.9977578475336323,
+        "minimum_token_coverage": 0.9,
+        "missing_tokens": [
+          "about×3"
+        ],
+        "pass": true
+      },
       "markdown_stats": {
-        "lines": 33,
-        "words": 147,
+        "lines": 30,
+        "words": 160,
         "headings": 2,
-        "links": 19,
-        "images": 0,
+        "links": 21,
+        "images": 1,
         "code_fences": 0,
         "tables": 0,
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 312,
+      "elapsed_ms": 114,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
         "status": "success",
-        "content_bytes": 5832,
-        "content_sha256": "9cd7ee7c5aa615b58eb1498d1cb925b85b4bb22ed820135e7924690958e05178",
-        "content_preview": "阅读、写作的**可读性**（英語：readability）不等於印刷领域的[易认性](https://zh.wikipedia.org/wiki/%E5%AD%97%E4%BD%93%E6%8E%92%E5%8D%B0%E5%AD%A6#%E6%98%93%E8%AE%A4%E6%80%A7 \"字体排印学\")（legibility），特指某种写作风格的产物。多方面的研究显示，容易阅读的文本可以增进理解程度，强化阅读印象，提高阅读速度，并让人坚持阅读。文本可读性的检测，可以为特…",
+        "content_bytes": 6814,
+        "content_sha256": "b70b887bab79982b4f028e4e9b8a515661d3184f70a36a1ca49e845882f7c4cc",
+        "content_preview": "[![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Disambig_gray.svg/40px-Disambig_gray.svg.png?utm_source=zh.wikipedia.org\u0026utm_campaign=parser\u0026utm_content=thumbnail)](https://zh.wikipedia.org/wiki/Wikipedia:%E6%B6%88%E6%AD%A7%E…",
         "content_format": "markdown",
         "site_config": "wikipedia",
         "metadata": {
-          "author": "维基媒体项目贡献者",
           "canonical_url": "https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AF%BB%E6%80%A7",
           "language": "zh",
-          "modified": "2025-07-28T19:26:02Z",
-          "published": "2010-01-10T17:27:06Z",
-          "site": "Wikimedia Foundation, Inc.",
-          "title": "可读性"
+          "title": "可读性 - 维基百科，自由的百科全书"
         },
-        "elapsed_ms": 312,
+        "elapsed_ms": 114,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-004",
+      "case_id": "LIVE-003",
       "case_name": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article",
       "participant": "defuddle",
-      "status": "fail",
+      "status": "pass",
       "native_status": "success",
       "markdown_fidelity": [
         {
@@ -667,8 +400,8 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 539,
-      "proof": "case=LIVE-004 failed_facts=[] security=[iframe_element] actual_preview=\"Baseline Widely available This feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015. - [Learn more](/en-US/docs/Glossary/Baseline/Compatibility) - [See full comp\"",
+      "elapsed_ms": 817,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "defuddle",
         "status": "success",
@@ -682,63 +415,12 @@
           "site": "MDN Web Docs",
           "title": "\u003carticle\u003e HTML article contents element"
         },
-        "elapsed_ms": 539,
+        "elapsed_ms": 817,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-004",
-      "case_name": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article",
-      "participant": "readabilities-py",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 149,
-        "words": 537,
-        "headings": 9,
-        "links": 48,
-        "images": 0,
-        "code_fences": 3,
-        "tables": 2,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 2790,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 6605,
-        "content_sha256": "26f6acdbcfd0dd810b600077d7d34d414e85e81d31dff5d782de04358ba91dd9",
-        "content_preview": "Baseline Widely available This feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015. * [Learn more](/en-US/docs/Glossary/Baseline/Compatibility) * [See full comp…",
-        "content_format": "markdown",
-        "metadata": {
-          "title": "\u003carticle\u003e HTML article contents element - HTML | MDN"
-        },
-        "elapsed_ms": 2790,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-004",
+      "case_id": "LIVE-003",
       "case_name": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article",
       "participant": "readabilities-rs",
       "status": "pass",
@@ -761,24 +443,47 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1 (same-snapshot live)",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 0.940251572327044,
+        "minimum_token_coverage": 0.9,
+        "missing_tokens": [
+          "about×6",
+          "aria",
+          "categories×3",
+          "content×10",
+          "guides×3",
+          "implicit",
+          "interface",
+          "omission",
+          "palpable×2",
+          "parents",
+          "permitted×3",
+          "sectioning×2"
+        ],
+        "pass": true
+      },
       "markdown_stats": {
-        "lines": 141,
-        "words": 489,
-        "headings": 8,
-        "links": 37,
+        "lines": 143,
+        "words": 504,
+        "headings": 10,
+        "links": 46,
         "images": 0,
         "code_fences": 3,
         "tables": 2,
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 484,
+      "elapsed_ms": 144,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
         "status": "success",
-        "content_bytes": 11782,
-        "content_sha256": "6acc9da6627ee9d1e0950f4a583fc4444f8a758e4a8747464bc38ae03060585b",
+        "content_bytes": 12717,
+        "content_sha256": "6e2d68f1bc60f7f82cdbc5c0fc6067ec2777a3009c08703e4af8a360265f26df",
         "content_preview": "# ` ` HTML article contents element Baseline Widely available This feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015. * [Learn more](https://developer.mozilla…",
         "content_format": "markdown",
         "site_config": "mdn",
@@ -786,15 +491,14 @@
           "canonical_url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article",
           "description": "The \u003carticle\u003e HTML element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). Examples include: a forum post, a magazine or newspaper article, or a blog entry, a product card, a user-submitted comment, an interactive widget or gadget, or any other independent item of content.",
           "language": "en-US",
-          "site": "MDN",
-          "title": "\u003carticle\u003e HTML article contents element - HTML"
+          "title": "\u003carticle\u003e HTML article contents element - HTML | MDN"
         },
-        "elapsed_ms": 484,
+        "elapsed_ms": 144,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-005",
+      "case_id": "LIVE-004",
       "case_name": "https://www.nasa.gov/news-release/nasa-to-cover-three-us-spacewalks-host-preview-news-conference/",
       "participant": "defuddle",
       "status": "pass",
@@ -828,7 +532,7 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 677,
+      "elapsed_ms": 905,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "defuddle",
@@ -842,64 +546,12 @@
           "site": "NASA",
           "title": "NASA to Cover Three US Spacewalks, Host Preview News Conference"
         },
-        "elapsed_ms": 677,
+        "elapsed_ms": 905,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-005",
-      "case_name": "https://www.nasa.gov/news-release/nasa-to-cover-three-us-spacewalks-host-preview-news-conference/",
-      "participant": "readabilities-py",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 61,
-        "words": 643,
-        "headings": 0,
-        "links": 11,
-        "images": 0,
-        "code_fences": 0,
-        "tables": 0,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 2736,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 5666,
-        "content_sha256": "405d47992b3121a17c7fb9519e85666870bab37d1c4078bad5d64f6e1415b4d1",
-        "content_preview": "***Editor’s Note: This advisory was updated on Aug. 10, 2026, to reflect the assigned crew members and coverage times for U.S. spacewalk 97, scheduled to take place on Tuesday, Aug. 18.*** ***Editor’s Note:*** ***The advisory was updated on…",
-        "content_format": "markdown",
-        "metadata": {
-          "author": "Lauren E. Low",
-          "title": "NASA to Cover Three US Spacewalks, Host Preview News Conference - NASA"
-        },
-        "elapsed_ms": 2736,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-005",
+      "case_id": "LIVE-004",
       "case_name": "https://www.nasa.gov/news-release/nasa-to-cover-three-us-spacewalks-host-preview-news-conference/",
       "participant": "readabilities-rs",
       "status": "pass",
@@ -922,44 +574,50 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1 (same-snapshot live)",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
-        "lines": 65,
-        "words": 681,
+        "lines": 67,
+        "words": 682,
         "headings": 0,
-        "links": 12,
-        "images": 0,
+        "links": 13,
+        "images": 1,
         "code_fences": 0,
         "tables": 0,
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 653,
+      "elapsed_ms": 179,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
         "status": "success",
-        "content_bytes": 5932,
-        "content_sha256": "58802be58d8ed2d9e08f6ce5a5d32b7810ea70ee0d6465b286f880276eca6f91",
-        "content_preview": "NASA astronaut Jessica Meir works inside the International Space Station’s Quest airlock in March, her reflection visible in a spacesuit helmet visor as she installs leg and arm components and swaps parts between suits. Credit: NASA/Jack Ha…",
+        "content_bytes": 6074,
+        "content_sha256": "349723500ea00b0050fd89b3f1a1f06a0db309454e3016461937f5c9ecb6bcba",
+        "content_preview": "[![006B6348.NEF](https://www.nasa.gov/wp-content/uploads/2026/07/meir.jpg?w=2048)](https://www.nasa.gov/wp-content/uploads/2026/07/meir.jpg) NASA astronaut Jessica Meir works inside the International Space Station’s Quest airlock in March, …",
         "content_format": "markdown",
         "metadata": {
-          "author": "Lauren E. Low",
           "canonical_url": "https://www.nasa.gov/news-release/nasa-to-cover-three-us-spacewalks-host-preview-news-conference/",
           "description": "Editor’s Note: This advisory was updated on Aug. 10, 2026, to reflect the assigned crew members and coverage times for U.S. spacewalk 97, scheduled to",
           "image": "https://www.nasa.gov/wp-content/uploads/2026/07/meir.jpg",
           "keywords": "[Humans in Space International Space Station (ISS)]",
           "language": "en-US",
-          "modified": "2026-08-10T13:43:50-04:00",
-          "published": "2026-07-27T14:35:11Z",
           "site": "NASA",
-          "title": "NASA to Cover Three US Spacewalks, Host Preview News Conference"
+          "title": "NASA to Cover Three US Spacewalks, Host Preview News Conference - NASA"
         },
-        "elapsed_ms": 653,
+        "elapsed_ms": 179,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-006",
+      "case_id": "LIVE-005",
       "case_name": "https://blog.rust-lang.org/2025/02/20/Rust-1.85.0/",
       "participant": "defuddle",
       "status": "pass",
@@ -993,7 +651,7 @@
         "noise_hits": 0,
         "duplicate_lines": 3
       },
-      "elapsed_ms": 600,
+      "elapsed_ms": 825,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "defuddle",
@@ -1007,64 +665,12 @@
           "site": "Rust Blog",
           "title": "Announcing Rust 1.85.0 and Rust 2024"
         },
-        "elapsed_ms": 600,
+        "elapsed_ms": 825,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-006",
-      "case_name": "https://blog.rust-lang.org/2025/02/20/Rust-1.85.0/",
-      "participant": "readabilities-py",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 225,
-        "words": 1637,
-        "headings": 10,
-        "links": 74,
-        "images": 0,
-        "code_fences": 9,
-        "tables": 0,
-        "noise_hits": 0,
-        "duplicate_lines": 3
-      },
-      "elapsed_ms": 2731,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 16650,
-        "content_sha256": "4b3eded039deaccd1554fdea69ee0afa9da1a1b21bae2b8b78651bf9f866adc0",
-        "content_preview": "The Rust team is happy to announce a new version of Rust, 1.85.0. This stabilizes the 2024 edition as well. Rust is a programming language empowering everyone to build reliable and efficient software. If you have a previous version of Rust …",
-        "content_format": "markdown",
-        "metadata": {
-          "author": "Feb. 20, 2025 · The Rust Release Team",
-          "title": "Announcing Rust 1.85.0 and Rust 2024 | Rust Blog"
-        },
-        "elapsed_ms": 2731,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-006",
+      "case_id": "LIVE-005",
       "case_name": "https://blog.rust-lang.org/2025/02/20/Rust-1.85.0/",
       "participant": "readabilities-rs",
       "status": "pass",
@@ -1087,9 +693,18 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1 (same-snapshot live)",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
-        "lines": 221,
-        "words": 1637,
+        "lines": 223,
+        "words": 1645,
         "headings": 10,
         "links": 74,
         "images": 0,
@@ -1098,28 +713,27 @@
         "noise_hits": 0,
         "duplicate_lines": 3
       },
-      "elapsed_ms": 296,
+      "elapsed_ms": 137,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
         "status": "success",
-        "content_bytes": 16854,
-        "content_sha256": "0b9f717d413eacd9e97fb4691a246f4fbcbbaf7d3d3d4f5313594ffc4b0c5074",
-        "content_preview": "The Rust team is happy to announce a new version of Rust, 1.85.0. This stabilizes the 2024 edition as well. Rust is a programming language empowering everyone to build reliable and efficient software. If you have a previous version of Rust …",
+        "content_bytes": 16914,
+        "content_sha256": "b7e93f63912f0d37129690107149d56a467c8b026dbc6eaca9ce109ab9cc0f47",
+        "content_preview": "Feb. 20, 2025 · The Rust Release Team The Rust team is happy to announce a new version of Rust, 1.85.0. This stabilizes the 2024 edition as well. Rust is a programming language empowering everyone to build reliable and efficient software. I…",
         "content_format": "markdown",
         "metadata": {
           "description": "Empowering everyone to build reliable and efficient software.",
           "image": "https://www.rust-lang.org/static/images/rust-social-wide.jpg",
           "language": "en",
-          "site": "Rust Blog",
-          "title": "Announcing Rust 1.85.0 and Rust 2024"
+          "title": "Announcing Rust 1.85.0 and Rust 2024 | Rust Blog"
         },
-        "elapsed_ms": 296,
+        "elapsed_ms": 137,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-007",
+      "case_id": "LIVE-006",
       "case_name": "https://news.ycombinator.com/",
       "participant": "defuddle",
       "status": "pass",
@@ -1144,85 +758,34 @@
       ],
       "markdown_stats": {
         "lines": 8,
-        "words": 769,
+        "words": 754,
         "headings": 0,
         "links": 17,
         "images": 0,
         "code_fences": 0,
         "tables": 1,
-        "noise_hits": 3,
+        "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 637,
+      "elapsed_ms": 746,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "defuddle",
         "status": "success",
-        "content_bytes": 14781,
-        "content_sha256": "ba70422d11b49fc3b83c47d70873290d6d6228f4516849c48566d6f0838bbad0",
-        "content_preview": "| | **[Hacker News](news)** [new](newest) \\| [past](front) \\| [comments](newcomments) \\| [ask](ask) \\| [show](show) \\| [jobs](jobs) \\| [submit](submit) | [login](login?goto=news) | | --- | --- | --- | 1. Nvidia Nemotron 3.5 Lightning and Ne…",
+        "content_bytes": 14725,
+        "content_sha256": "d2f88a0d812057356208efac455efbcf03133bb2dc9bb4ea4b22b61b910f8f1c",
+        "content_preview": "| | **[Hacker News](news)** [new](newest) \\| [past](front) \\| [comments](newcomments) \\| [ask](ask) \\| [show](show) \\| [jobs](jobs) \\| [submit](submit) | [login](login?goto=news) | | --- | --- | --- | 1. WorldClaw Agentic 3D open-world gene…",
         "content_format": "markdown",
         "metadata": {
           "language": "en",
           "title": "Hacker News"
         },
-        "elapsed_ms": 637,
+        "elapsed_ms": 746,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-007",
-      "case_name": "https://news.ycombinator.com/",
-      "participant": "readabilities-py",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 1,
-        "words": 952,
-        "headings": 0,
-        "links": 181,
-        "images": 0,
-        "code_fences": 0,
-        "tables": 0,
-        "noise_hits": 3,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 2682,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 9964,
-        "content_sha256": "dbcb2d5595a563c2f5546c92ad4c87117990ab596e48c766e0d45bcf16abdaf6",
-        "content_preview": "| | | | | --- | --- | --- | | 1. | | [Nvidia Nemotron 3.5 Lightning and NeMo Switchyard](https://blogs.nvidia.com/blog/nemotron-lightning-switchyard-rtx-dgx/) ([nvidia.com](from?site=nvidia.com)) | | | | 115 points by [droidjj](user?id=droi…",
-        "content_format": "markdown",
-        "metadata": {
-          "title": "Hacker News"
-        },
-        "elapsed_ms": 2682,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-007",
+      "case_id": "LIVE-006",
       "case_name": "https://news.ycombinator.com/",
       "participant": "readabilities-rs",
       "status": "pass",
@@ -1245,39 +808,48 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1 (same-snapshot live)",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 1,
+        "minimum_token_coverage": 0.9,
+        "pass": true
+      },
       "markdown_stats": {
-        "lines": 249,
-        "words": 727,
+        "lines": 253,
+        "words": 714,
         "headings": 0,
-        "links": 198,
-        "images": 0,
+        "links": 199,
+        "images": 2,
         "code_fences": 0,
         "tables": 0,
-        "noise_hits": 3,
+        "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 762,
+      "elapsed_ms": 146,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
         "status": "success",
-        "content_bytes": 16628,
-        "content_sha256": "5e6ff720b2099d6f9a98287ca10c9ffcba0b4226ccafe8e6ea29c40c67bc5077",
-        "content_preview": "**[Hacker News](https://news.ycombinator.com/news)**[new](https://news.ycombinator.com/newest) | [past](https://news.ycombinator.com/front) | [comments](https://news.ycombinator.com/newcomments) | [ask](https://news.ycombinator.com/ask) | […",
+        "content_bytes": 16692,
+        "content_sha256": "8bcbfcba8af8af63fdd34d14935f2d3f4bd750271c247138a0c925630eb7d502",
+        "content_preview": "[![](https://news.ycombinator.com/y18.svg)](https://news.ycombinator.com/) **[Hacker News](https://news.ycombinator.com/news)**[new](https://news.ycombinator.com/newest) | [past](https://news.ycombinator.com/front) | [comments](https://news…",
         "content_format": "markdown",
         "metadata": {
           "language": "en",
           "title": "Hacker News"
         },
-        "elapsed_ms": 762,
+        "elapsed_ms": 146,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-008",
+      "case_id": "LIVE-007",
       "case_name": "https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/",
       "participant": "defuddle",
-      "status": "fail",
+      "status": "pass",
       "native_status": "success",
       "markdown_fidelity": [
         {
@@ -1311,8 +883,8 @@
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 597,
-      "proof": "case=LIVE-008 failed_facts=[] security=[iframe_element] actual_preview=\"Accordion Example ## Read This First The code in this example is not intended for production environments. Before using it for any purpose, read this to understand why. This is an illustrative example of one way of using ARIA that conforms \"",
+      "elapsed_ms": 700,
+      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "defuddle",
         "status": "success",
@@ -1326,64 +898,12 @@
           "site": "Web Accessibility Initiative (WAI)",
           "title": "Accordion Example"
         },
-        "elapsed_ms": 597,
+        "elapsed_ms": 700,
         "exit_code": 0
       }
     },
     {
-      "case_id": "LIVE-008",
-      "case_name": "https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/",
-      "participant": "readabilities-py",
-      "status": "pass",
-      "native_status": "success",
-      "markdown_fidelity": [
-        {
-          "fact": "native Markdown output",
-          "pass": true
-        },
-        {
-          "fact": "balanced fenced code blocks",
-          "pass": true
-        },
-        {
-          "fact": "image and following prose remain separated",
-          "pass": true
-        },
-        {
-          "fact": "no NUL bytes",
-          "pass": true
-        }
-      ],
-      "markdown_stats": {
-        "lines": 53,
-        "words": 459,
-        "headings": 6,
-        "links": 9,
-        "images": 1,
-        "code_fences": 0,
-        "tables": 2,
-        "noise_hits": 0,
-        "duplicate_lines": 0
-      },
-      "elapsed_ms": 2286,
-      "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
-      "native": {
-        "participant": "readabilities-py",
-        "status": "success",
-        "content_bytes": 3329,
-        "content_sha256": "0eb8791ef81120d3f92a610725b6b12b812bf5304a8eb23fde85282e754d5ed4",
-        "content_preview": "Accordion Example The code in this example is not intended for production environments. Before using it for any purpose, read this to understand why. This is an illustrative example of one way of using ARIA that conforms with the ARIA speci…",
-        "content_format": "markdown",
-        "metadata": {
-          "author": "W3C Web Accessibility Initiative (WAI)",
-          "title": "Accordion Example"
-        },
-        "elapsed_ms": 2286,
-        "exit_code": 0
-      }
-    },
-    {
-      "case_id": "LIVE-008",
+      "case_id": "LIVE-007",
       "case_name": "https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/",
       "participant": "readabilities-rs",
       "status": "pass",
@@ -1406,24 +926,47 @@
           "pass": true
         }
       ],
+      "golden_oracle": {
+        "source": "defuddle/0.19.2-markdown-v1 (same-snapshot live)",
+        "expected_status": "success",
+        "actual_status": "success",
+        "status_pass": true,
+        "token_coverage": 0.9456066945606695,
+        "minimum_token_coverage": 0.9,
+        "missing_tokens": [
+          "about×3",
+          "address×2",
+          "controls",
+          "h3",
+          "id",
+          "idref",
+          "information",
+          "or",
+          "personal",
+          "shift",
+          "space",
+          "tab×2"
+        ],
+        "pass": true
+      },
       "markdown_stats": {
-        "lines": 56,
-        "words": 444,
-        "headings": 8,
-        "links": 8,
+        "lines": 72,
+        "words": 464,
+        "headings": 10,
+        "links": 9,
         "images": 1,
         "code_fences": 1,
         "tables": 2,
         "noise_hits": 0,
         "duplicate_lines": 0
       },
-      "elapsed_ms": 266,
+      "elapsed_ms": 97,
       "proof": "required=0 forbidden=0 structure=0 markdown=4 order=0 metadata=0 site=0 security=0",
       "native": {
         "participant": "readabilities-rs",
         "status": "success",
-        "content_bytes": 5080,
-        "content_sha256": "ffbd38706061845eafb6d5591d08ad8c86a05054fbc996742239cf69b55a2950",
+        "content_bytes": 5301,
+        "content_sha256": "7cca2271e6fe0933245abfae11a6918630528a731bd3e5470dc6c42f8ad1640b",
         "content_preview": "Accordion Example ## Read This First The code in this example is not intended for production environments. Before using it for any purpose, read this to understand why. This is an illustrative example of one way of using ARIA that conforms …",
         "content_format": "markdown",
         "metadata": {
@@ -1435,7 +978,7 @@
           "site": "Web Accessibility Initiative (WAI)",
           "title": "Accordion Example"
         },
-        "elapsed_ms": 266,
+        "elapsed_ms": 97,
         "exit_code": 0
       }
     }

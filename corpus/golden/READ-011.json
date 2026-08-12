@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-011",
+  "fixture_sha256": "0a456b2171fea2ee5472c2956dea4a852841eaac03fab0e7a67acd4c1e82b616",
+  "status": "no_content",
+  "content": "",
+  "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "metadata": {}
+}

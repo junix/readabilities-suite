@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-014",
+  "fixture_sha256": "a0d1c825f9d7b8adb400b1b81a9007e00eb28e276f235a61ed6bb4625db652aa",
+  "status": "success",
+  "content": "## ReadableContent\n\nREQUIRED-MDN-SUMMARY: The ReadableContent interface represents a cleaned document selected from an HTML snapshot.\n\n## Syntax\n\n```js\nconst article = reader.extract(html);\n```\n\nREQUIRED-MDN-SYNTAX: Rendering Markdown happens after the content selection stage.\n\nREQUIRED-MDN-END: Unknown documentation sites continue through the same generic fallback.",
+  "content_sha256": "3443119709df5b639237330d5f388beb08421aa537f8953d14c1306d617ec2cf",
+  "metadata": {
+    "site": "MDN",
+    "title": "ReadableContent - Web APIs"
+  }
+}

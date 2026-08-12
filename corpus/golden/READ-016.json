@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "defuddle/0.19.2-markdown-v1",
+  "case_id": "READ-016",
+  "fixture_sha256": "1c6eb230fb5905754ef472afdbac20790d77fca37e0fc5aa9dce6f19d84bda1e",
+  "status": "success",
+  "content": "REQUIRED-CUSTOM-OPEN: A caller can load a declarative profile without rebuilding the Rust crate.\n\nREQUIRED-CUSTOM-BODY: Host matching is boundary aware and selectors are validated before extraction starts.\n\n- Choose the content root.\n- Remove stable interface noise.\n\nFORBIDDEN-CUSTOM-SPONSOR: Sponsored package\n\nFORBIDDEN-CUSTOM-TOOLS: Share Save Subscribe\n\nREQUIRED-CUSTOM-END: The resulting document still crosses the common sanitizer and Markdown renderer.",
+  "content_sha256": "964605d085397de8bf5eec17562a2b9d1b3ee59f67016bf1c163f4de912cf0ee",
+  "metadata": {
+    "title": "Loading a Site Profile"
+  }
+}
