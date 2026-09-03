@@ -9,3 +9,17 @@
 *.swp
 *.swo
 .DS_Store
+# --- appended by gitignore-sweep on 2026-09-03 ---
+# Binaries
+*.exe~
+*.dll
+*.so
+*.dylib
+# Test binary, built with `go test -c`
+# Output of go coverage
+*.prof
+# Go workspace files
+go.work
+go.work.sum
+# Dependency directories
+vendor/
